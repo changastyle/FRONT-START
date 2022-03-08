@@ -2,7 +2,7 @@
 
 ![2022-03-08 11_13_24-](https://user-images.githubusercontent.com/5306603/157255202-9e7ccc23-387e-4372-9666-edee4616391d.jpg)
 
-1 - DEVERIAS TENER #APACHE CORRIENDO:
+1 - DEBERIAS TENER #APACHE CORRIENDO:
 
 2 - VAS A TU CARPETA C:/xampp/htdocs/
 
@@ -38,4 +38,5 @@ EN PRODUCCION.
 
 
 16 - PARA AGREGAR COMPONENTES DENTRO DEL HTML SE USA LA ETIQUETA <include src="ruta-al-archivo"></include>
+
 17 - PARA INCLUIR ARCHIVOS CON MAS FUNCIONES DENTRO DE ANGULAR SE USA EL < fn src="fn/fn-comunes.js" />
