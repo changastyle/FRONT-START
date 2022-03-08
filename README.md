@@ -1,5 +1,7 @@
 # FRONT-START
 
+![2022-03-08 11_13_24-](https://user-images.githubusercontent.com/5306603/157255202-9e7ccc23-387e-4372-9666-edee4616391d.jpg)
+
 1 - DEVERIAS TENER #APACHE CORRIENDO:
 
 2 - VAS A TU CARPETA C:/xampp/htdocs/
