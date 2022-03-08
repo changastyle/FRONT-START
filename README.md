@@ -38,6 +38,7 @@
 EN PRODUCCION.
 
 
-16 - PARA AGREGAR COMPONENTES DENTRO DEL HTML SE USA LA ETIQUETA <include src="ruta-al-archivo"></include>
+16 - PARA AGREGAR COMPONENTES DENTRO DEL HTML SE USA LA ETIQUETA 
+<img width="324" alt="image" src="https://user-images.githubusercontent.com/5306603/157264803-2daa9aaf-b5ef-406b-82ee-ab4cd85aa568.png">
 
 17 - PARA INCLUIR ARCHIVOS CON MAS FUNCIONES DENTRO DE ANGULAR SE USA EL **< fn src="fn/fn-comunes.js" />**
