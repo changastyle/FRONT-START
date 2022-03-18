@@ -46,3 +46,8 @@ EN PRODUCCION.
   
 <img width="538" alt="image" src="https://user-images.githubusercontent.com/5306603/158981366-84b45d37-a1f4-448f-a7e6-5aef3cc17d55.png">
 
+  
+  18 - OTRA COSA IMPORTANTE SIEMPRE VA <STYLE> Y LUEGO <SCRIPT> SINO SE ROMPE
+  
+  <img width="660" alt="image" src="https://user-images.githubusercontent.com/5306603/158982574-08c6f954-9d74-4f2c-b3c7-f0ca12dd8035.png">
+
