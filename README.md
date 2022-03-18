@@ -43,5 +43,6 @@ EN PRODUCCION.
 <img width="324" alt="image" src="https://user-images.githubusercontent.com/5306603/157264803-2daa9aaf-b5ef-406b-82ee-ab4cd85aa568.png">
 
 17 - PARA INCLUIR ARCHIVOS CON MAS FUNCIONES DENTRO DE ANGULAR SE USA EL **< fn src="fn/fn-comunes.js" />** al final del <script> antes de terminar
+  
 <img width="538" alt="image" src="https://user-images.githubusercontent.com/5306603/158981366-84b45d37-a1f4-448f-a7e6-5aef3cc17d55.png">
 
