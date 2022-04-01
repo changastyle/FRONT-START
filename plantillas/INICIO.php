@@ -1,9 +1,16 @@
 <?php
       require 'INCLUIDOR.php';
       
+      $verboso = false;
 
-      if(!isset($_SESSION)) { 
+      if(!isset($_SESSION)) 
+      { 
             session_start();
+
+            if($verboso)
+            {
+                  echo "INICIANDO SESSION";
+            }
       }
 
 
@@ -11,35 +18,82 @@
       { 
             $step = $_SESSION['STEP'];
             
-            // echo "STEP:" . $step ."<br>";
+            if($step == -1)
+            {
+                  $step = 1;
+                  $_SESSION['STEP'] = (int) $step;
+            }
+
+
+
+
+            if($verboso)
+            {
+                  echo "STEP:" . $step ."<br>";
+            }
+
+
+
             
+
             if($step == 1)
             {
                   $step = 2;
                   compilar("{{rutaEntradaParam}}",false);
-                  // echo "ENTRE 1 PONGO EN 2";
                   $_SESSION['STEP'] = (int) $step;
                   // sleep(1);
                   header("Refresh:0");
+                  
+                  
+                  
+                  if($verboso)
+                  {
+                        echo "ENTRE 1 PONGO EN 2";
+                  }
             }
             else if ($step == 2)
             {
                   $step = 3;
                   compilar("{{rutaEntradaParam}}",false);
-                  // echo "ENTRE 2 PONGO EN 3";
                   $_SESSION['STEP'] = (int) $step;
                   header("Refresh:0");
                   // header("Location: http://localhost/FRONT-START/index.php".$step);
+                  
+                  
+                  if($verboso)
+                  {
+                        echo "ENTRE 2 PONGO EN 3";
+                  }
             }
             else if ($step == 3)
             {
                   $step = 1;
                   compilar("{{rutaEntradaParam}}",false);
-                  // echo "ENTRE 3 PONGO EN 1";
                   $_SESSION['STEP'] = (int) $step;
                   // sleep(3);
                   // header("Refresh:0");
                   // header("Location: http://localhost/FRONT-START/index.php".$step);
+                  
+                  
+                  
+                  
+                  if($verboso)
+                  {
+                        echo "ENTRE 3 PONGO EN 1";
+                  }
+            }
+      }
+      else
+      {
+            compilar("{{rutaEntradaParam}}",false);
+            $_SESSION['STEP'] = 1;
+            header("Refresh:0");
+            
+            
+            
+            if($verboso)
+            {
+                  echo "NO HABIA VARIABLE DE SESSION";
             }
       }
 ?>
@@ -94,6 +148,7 @@
       <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
       <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
 
+      <!-- FONT AWESOME:-->
       <!-- FONT AWESOME:-->
       <script src="https://kit.fontawesome.com/01ed377a67.js" crossorigin="anonymous"></script>
 
