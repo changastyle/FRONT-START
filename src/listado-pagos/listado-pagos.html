@@ -1,0 +1,87 @@
+<div class="cont-invoices">
+
+      <div class="cont-loader-invoices flex flex-center " ng-show="cargandoInvoices">
+            <include src="../comun/loader.html"></include>
+      </div>
+      <div class="super-cont-invoices flex-center">
+
+            <div class="cont-invoice col-4" ng-hide="cargandoInvoices">
+                  <table class="table">
+                        <thead>
+                              <th>#</th>
+                              <th>Name</th>
+                              <th>Period</th>
+                              <th>Amount</th>
+                              <th>Status</th>
+                        </thead>
+                        <tbody>
+                              <tr>
+                                    <td>1</td>
+                                    <td>ClinicApp - SEAS</td>
+                                    <td>01/05/2023 - 30/05/2023</td>
+                                    <td>$8200</td>
+                                    <td>Not Payed</td>
+                              </tr>
+                              <tr>
+                                    <td>1</td>
+                                    <td>ClinicApp - SEAS</td>
+                                    <td>01/05/2023 - 30/05/2023</td>
+                                    <td>$8000</td>
+                                    <td>Payed</td>
+                              </tr>
+                              <tr>
+                                    <td>1</td>
+                                    <td>ClinicApp - SEAS</td>
+                                    <td>01/05/2023 - 30/05/2023</td>
+                                    <td>$8600</td>
+                                    <td>Payed</td>
+                              </tr>
+                        </tbody>
+                  </table>
+                  <div class="item-invoice" ng-repeat="invoice in arrInvoices">
+                        {{invoice}}
+                  </div>
+            </div>
+      </div>
+</div>
+
+<style>
+      .cont-invoice {
+            background-color: white;
+            padding: 15px;
+      }
+
+      .item-invoice {
+            background-color: lightgrey;
+            border-radius: 20px;
+            padding: 12px;
+            margin-bottom: 12px;
+      }
+</style>
+
+<script inyectado>
+      $scope.findInvoices = function ()
+      {
+            $scope.cargandoPagos = false;
+            token = $scope.getJWT();
+            $.ajax(
+                  {
+                        url: $scope.urlWS + "pagos",
+                        headers:
+                        {
+                              "authorization": "Bearer " + token
+                        },
+                        beforeSend: function (xhr) 
+                        {
+                              $scope.cargandoInvoices = true;
+                        },
+                        success: function (resultado, textStatus, jqXHR) 
+                        {
+                              $scope.arrInvoices = resultado;
+                              $scope.cargandoInvoices = false;
+                              $scope.$evalAsync();
+                        }
+
+                  });
+      }
+</script>

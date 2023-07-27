@@ -1,0 +1,28 @@
+</body>
+<script>
+      app = angular.module('app', ['ngSanitize']);
+
+      // <input type="file" custom-on-change="changeUploadFile">
+      //     $scope.changeUploadFile = function (event)
+      //       {
+      //             var files = event.target.files;
+      //       };
+      app.directive('customOnChange', function ()
+      {
+            return {
+                  restrict: 'A',
+                  link: function (scope, element, attrs)
+                  {
+                        var onChangeHandler = scope.$eval(attrs.customOnChange);
+                        element.on('change', onChangeHandler);
+                        element.on('$destroy', function ()
+                        {
+                              element.off();
+                        });
+
+                  }
+            };
+      });
+
+      app.controller('ctl', function ($scope)
+      {

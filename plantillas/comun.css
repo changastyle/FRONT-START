@@ -1,0 +1,151 @@
+body{
+   min-width:385px; 
+   background-color: #e3e3e3;
+}
+.sin-padding {
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.padding
+{
+    padding: 15px;
+}
+.pointer {
+    cursor: pointer;
+}
+
+.flex {
+    display: flex;
+}
+.flex-center
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.flex-center-h
+{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.flex-center-v
+{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.flex-start
+{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+.flex-justify
+{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.center
+{
+    text-align: center;
+}
+.divImg
+{
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.divImgContain
+{
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.divImgCenter
+{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+.bsr
+{
+    border: solid 1px red;
+}
+.bsb
+{
+    border: solid 1px blue;
+}
+.bsy
+{
+    border: solid 1px yellow;
+}
+.bsg
+{
+    border: solid 1px green;
+}
+.bsgrey
+{
+    border: solid 1px lightgrey;
+}
+
+.numero-componente
+{
+    background-color: red;
+    cursor: pointer;
+    /*background-color: rgba(0,0,0,0.45);*/
+    color: white;
+    font-weight: bold;
+    /*border:solid 1px red;*/
+    /*border-radius: 40px;*/
+    padding: 12px;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    z-index: 999;
+}
+.white
+{
+    color: white;
+}
+.black
+{
+    color: black;
+}
+.no-overflow
+{
+    overflow: hidden;
+}
+.btn-nico 
+{
+    cursor: pointer;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 12px;
+    padding-right: 12px;
+    border-radius: 6px;
+    border: solid 0px transparent;
+}
+      .loader-nico {
+            border: 16px solid #f3f3f3;
+            /* Light grey */
+
+            /* Blue */
+            border-radius: 50%;
+            animation: spin 2s linear infinite;
+            height: 150px;
+            width: 150px;
+      }
+
+      @keyframes spin {
+            0% {
+                  transform: rotate(0deg);
+            }
+
+            100% {
+                  transform: rotate(360deg);
+            }
+      }

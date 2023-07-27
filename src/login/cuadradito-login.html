@@ -1,0 +1,103 @@
+<div class="centrador-cuadradito-blanco flex flex-center-h flex-center-v">
+
+      <div class="cuadradito-blanco">
+
+            <div class="centrador-circulo-vd flex flex-center">
+                  <div class="circulo-vd flex flex-center-h flex-center-v">
+                        <div class="img-circulo-blanco">
+                        </div>
+                  </div>
+            </div>
+
+            <h3 class="h3 mb-3">Plataforma de Pagos</h3>
+            <!-- <h5 class="h5">View Devs</h5> -->
+
+            <!-- <input type="number" ng-model="cuit" class="form-control form-nico"
+                  placeholder="Ingrese CUIT de la empresa.."> -->
+
+            <!-- 1 - INPUT EMAIL USUARIO: -->
+            <div class="pb-3">
+                  <input type="email" ng-model="email" class="form-control form-nico" placeholder="Email">
+            </div>
+
+            <!-- 2 - INPUT PASS USUARIO  -->
+            <div class="pb-3">
+                  <input type="password" ng-model="pass" class="form-control form-nico" placeholder="Clave">
+            </div>
+
+
+            <button class="btn btn-ingresar flex flex-center-h" ng-click="logearse()">
+                  <i class="fa-solid fa-arrow-right-to-arc"></i>
+                  Ingresar
+            </button>
+      </div>
+</div>
+
+<style>
+      .centrador-cuadradito-blanco {
+            height: calc(100vh - 50px);
+      }
+
+      .centrador-circulo-vd {
+            position: relative;
+            /* border: solid 1px yellow; */
+            top: -90px;
+            margin-bottom: -60px;
+      }
+
+      .cuadradito-blanco {
+            background-color: white;
+            border-radius: 8px;
+            width: 300px;
+            box-shadow: 5px 5px 15px black;
+            padding: 15px;
+      }
+
+      .circulo-vd {
+            border-radius: 100px;
+            box-shadow: 5px 5px 15px black;
+            background-color: white;
+            padding: 10px;
+
+      }
+
+      .img-circulo-blanco {
+            background-image: url("./res/img/logo-vd.png");
+            background-size: contain;
+            background-position: center center;
+            width: 120px;
+            height: 120px;
+            border-radius: 100px;
+      }
+
+      .form-nico {
+            border-radius: 50px;
+      }
+
+      .h3 {
+            text-align: center;
+            color: black;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 20px;
+      }
+
+      .h5 {
+            color: grey;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            margin-top: 25px;
+      }
+
+      .btn-ingresar,
+      .btn-ingresar:hover,
+      .btn-ingresar:active {
+            background-color: #CF161E;
+            color: white;
+            width: 100%;
+            border-radius: 25px;
+            margin-top: 15px;
+      }
+</style>
+
+<script inyectado>
+</script>

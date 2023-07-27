@@ -1,0 +1,81 @@
+<h3>Payments Front</h3>
+{{arrInvoices}}
+
+<br>
+ARR PRODUCTOS: {{arrProductos}}
+
+<include src="comun/cuadro-login.html"></include>
+
+<select class="form-control" ng-model="productoSelected"
+      ng-options="producto as producto.nombre for producto in arrProductos track by producto.nombre">
+</select>
+
+<style>
+</style>
+<script inyectado>
+      $scope.init = function ()
+      {
+            console.log("INIT");
+            $scope.getJWT();
+            $scope.comprobarOperadorLogeado();
+            $scope.findInvoices();
+            $scope.findProductos();
+      }
+
+      $scope.findInvoices = function ()
+      {
+            $scope.cargandoInvoices = false;
+            $.ajax(
+                  {
+                        url: $scope.urlWS + "invoices/find",
+                        headers:
+                        {
+                              "authorization": "Bearer " + $scope.token
+                        },
+                        data:
+                        {
+
+                        },
+                        beforeSend: function (xhr) 
+                        {
+                              $scope.cargandoInvoices = true;
+                        },
+                        success: function (resultado, textStatus, jqXHR) 
+                        {
+                              $scope.arrInvoices = resultado;
+                              $scope.cargandoInvoices = false;
+                              $scope.$evalAsync();
+                        }
+
+                  });
+      }
+      $scope.findProductos = function ()
+      {
+            $scope.cargandoProductos = false;
+            $.ajax(
+                  {
+                        url: $scope.urlWS + "producto/",
+                        headers:
+                        {
+                              "authorization": "Bearer " + $scope.token
+                        },
+                        data:
+                        {
+
+                        },
+                        beforeSend: function (xhr) 
+                        {
+                              $scope.cargandoProductos = true;
+                        },
+                        success: function (resultado, textStatus, jqXHR) 
+                        {
+                              $scope.arrProductos = resultado;
+                              $scope.productoSelected = $scope.arrProductos[0];
+                              $scope.cargandoProductos = false;
+                              $scope.$evalAsync();
+                        }
+
+                  });
+      }
+
+</script>
