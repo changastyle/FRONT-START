@@ -1,0 +1,62 @@
+<div class="col-12">
+      <h3>Historico Pagos</h3>
+
+      <div class="listado-pagos">
+            <div class="item-pagos bsr col-12 flex" ng-repeat="invoice in arrInvoices">
+
+
+                  <div class="file-invoice col-2 flex-center flex-center-v">
+                        {{invoice.importe}}
+                  </div>
+                  {{invoice.mesPeriodo}}
+                  {{invoice.yearPeriodo}}
+                  <div class="precio-invoice col-2 flex-center flex-center-v">
+                        {{invoice.importe}}
+                  </div>
+            </div>
+      </div>
+</div>
+
+<style>
+      .item-pagos {
+            background-color: #EFEFF0;
+      }
+
+      .precio-invoice {
+            color: white;
+            background-color: green;
+      }
+</style>
+
+<script inyectado>
+
+      $scope.arrInvoices = [];
+      $scope.findInvoices = function ()
+      {
+            $scope.cargandoInvoices = false;
+            $.ajax(
+                  {
+                        url: $scope.urlWS + "invoices/findMesYear",
+                        headers:
+                        {
+                              "authorization": "Bearer " + $scope.token
+                        },
+                        data:
+                        {
+                              "mes": $scope.aumentoMes,
+                              "year": $scope.yearEmulado
+                        },
+                        beforeSend: function (xhr) 
+                        {
+                              $scope.cargandoInvoices = true;
+                        },
+                        success: function (resultado, textStatus, jqXHR) 
+                        {
+                              $scope.arrInvoices = resultado;
+                              $scope.cargandoInvoices = false;
+                              $scope.$evalAsync();
+                        }
+
+                  });
+      }
+</script>

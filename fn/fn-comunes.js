@@ -5,7 +5,7 @@ $scope.verbose = false;
 
 $scope.MODO_LOCAL = true;
 $scope.urlWS = "";
-$scope.url_DEV = "http://localhost:8999/";
+$scope.url_DEV = "http://192.168.0.107:8999/";
 $scope.url_PROD = "https://wiz.viewdevs.com.ar/";
 
 $scope.year = new Date().getFullYear();

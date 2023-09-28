@@ -1,0 +1,22 @@
+<h3>TEST LOGIN</h3>
+
+<div class="col-12">
+
+      <div class="col-4 offset-4">
+
+            <div class="mb-3">
+                  <input type="email" class="form-control" placeholder="Email" ng-model="email">
+            </div>
+            <div class="mb-3">
+                  <input type="password" class="form-control" ng-model="pass">
+            </div>
+
+            <button class="btn btn-success" ng-click="logearse()">Login</button>
+            <button class="btn btn-warning" ng-click="comprobarOperadorLogeado()">Comprobar Logeado</button>
+            <button class="btn btn-danger" ng-click="exit()">Cerrar Sesion</button>
+      </div>
+
+      <div class="bg-white col-4 offset-4 mt-3 p-3" ng-show="usrLogeado != null">
+            Operador Logeado: {{usrLogeado}}
+      </div>
+</div>

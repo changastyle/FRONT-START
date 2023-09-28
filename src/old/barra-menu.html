@@ -1,0 +1,79 @@
+<div class="barra-menu col-12  flex sin-padding">
+
+      <div class="barra-menu barra-menu-izq col-3 bsr sin-padding
+            flex-center-v">
+            MENU
+      </div>
+
+      <div class="barra-menu barra-menu-mid col-6 flex">
+            <div class="item-menu" ng-repeat="menu in arrMenus" ng-click="redirect(menu.link)">
+                  {{menu.nombre}}
+            </div>
+      </div>
+
+      <div class="barra-menu barra-menu-der col-3 bsr flex-center-v">
+            <div class="img-perfil" style="background-image: url('{{usrLogeado.fotoPerfil.fullFoto}}')">
+            </div>
+
+            <div class="cont-email-usr bsr">
+                  <div class="bold">
+                        {{usrLogeado.nombre}}
+                        {{usrLogeado.apellido}}
+                  </div>
+                  {{usrLogeado.email}}
+            </div>
+            <div class="cont-opciones-usr bsr flex flex-center flex-center-v pointer"
+                  ng-click="cambiarEstadoMostrarOpciones()">
+                  <i class="fa-solid fa-angle-down"></i>
+            </div>
+            <!-- {{usrLogeado.fotoPerfil.fullFoto}} -->
+      </div>
+</div>
+
+<include src="../comun/opciones-user.html"></include>
+
+<style>
+      .barra-menu {
+            background-color: var(--verde);
+      }
+
+      .barra-menu-mid {
+            padding-top: 12px;
+            padding-bottom: 12px;
+      }
+
+      .item-menu {
+            background-color: rgba(0, 0, 0, 0.45);
+            border-radius: 20px;
+            margin-right: 15px;
+            padding: 8px;
+            cursor: pointer;
+            color: white;
+      }
+
+      .img-perfil {
+            width: 50px;
+            height: 50px;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: contain;
+      }
+
+      .cont-email-usr {
+            width: calc(100% - 100px);
+            padding-left: 15px;
+            ;
+      }
+
+      .cont-opciones-usr {
+            width: 50px;
+      }
+</style>
+
+<script inyectado>
+      $scope.arrMenus = [
+            { "id": 1, "nombre": "Historico", "link": "historico.html" },
+            { "id": 2, "nombre": "Login", "link": "index.html" },
+            { "id": 3, "nombre": "Test", "link": "test.html" }
+      ];
+</script>

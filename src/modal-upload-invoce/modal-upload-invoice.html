@@ -1,0 +1,159 @@
+<div class="modal" id="modal-upload-invoice">
+      <div class="modal-dialog">
+            <div class="modal-content">
+
+                  <!-- Modal Header -->
+                  <div class="modal-header">
+                        <h4 class="modal-title">Modal Heading</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+
+                  <!-- Modal body -->
+                  <div class="modal-body">
+
+                        <!-- FORM IMG UPLOAD : -->
+                        <form id="formulario-upload-invoices" class="col-12 sin-padding" enctype="multipart/form-data"
+                              method="POST">
+
+                              <!-- INPUT FILE:-->
+                              <input id="input-upload-invoices" class="input-upload-invoices" name="foto" type="file"
+                                    accept="image/*" style="display: none;">
+
+                              <!-- FOTO CLICKEABLE: -->
+                              <img id='img-invoice' class="img-item-listado-l rounded-circle d-block mx-auto"
+                                    ng-src="{{upInvoice.fullFoto}}" alt="{{upInvoice.fullFoto}}">
+
+                              {{upInvoice}}
+                        </form>
+
+
+                  </div>
+
+                  <!-- Modal footer -->
+                  <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                  </div>
+
+            </div>
+      </div>
+</div>
+
+<style>
+      #modal-upload-invoice {}
+
+      #img-invoice {
+            width: 150px;
+            height: 150px;
+            border: solid 1px red;
+      }
+</style>
+
+<script inyectado>
+      $scope.openModalInvoice = function ()
+      {
+            $("#modal-upload-invoice").modal();
+      }
+
+      // AL ABRIR EL MODAL:
+      $('#img-invoice').on('click', function ()
+      {
+            console.log("CLICKEO");
+            $('#input-upload-invoices').trigger('click');
+      });
+      $('#input-upload-invoices').on('change', function ()
+      {
+            console.log("CAMBIO");
+            $scope.uploadFotoInvoice("formulario-upload-invoices");
+      });
+      $scope.uploadFotoInvoice = function ()
+      {
+
+            formularioID = "formulario-upload-invoices";
+            console.log("VOY A SUBIR ARCHIVO DEL FORMULARIO " + formularioID + " @ " + $scope.urlASubirCorrespondienteCarpeta);
+            var formData = new FormData(document.getElementById(formularioID));
+
+            $.ajax({
+                  url: $scope.urlWS + "upload/foto/",
+                  headers:
+                  {
+                        "authorization": "Bearer " + $scope.token
+                  },
+                  async: false,
+                  type: "post",
+                  dataType: "html",
+                  data: formData,
+                  cache: false,
+                  contentType: false,
+                  processData: false,
+                  xhr: function ()
+                  {
+                        var xhr = new window.XMLHttpRequest();
+
+                        //UPLOAD PROGRESS:
+                        xhr.upload.addEventListener("progress", function (evt)
+                        {
+                              if (evt.lengthComputable) 
+                              {
+                                    var percentComplete = evt.loaded / evt.total;
+
+                                    porcentaje = Math.round(percentComplete * 100);
+                                    console.log("PORCENTAJE UPLOAD: " + porcentaje + "%");
+
+                                    $("#porcentaje-carga-" + formularioID).html(porcentaje + "%");
+                              }
+                        }, false);
+
+                        //DOWNLOAD PROGRESS:
+                        xhr.addEventListener("progress", function (evt)
+                        {
+                              if (evt.lengthComputable) 
+                              {
+                                    var percentComplete = evt.loaded / evt.total;
+                                    console.log("PORCENTAJE DOWNLOAD: " + porcentaje + "%");
+                              }
+                        }, false);
+
+                        return xhr;
+                  },
+                  success: function (resultado, textStatus, jqXHR) 
+                  {
+                        console.log("respueta upload one: " + resultado);
+                        // respuesta = JSON.parse(resultado);
+                        $scope.upInvoice = JSON.parse(resultado);
+
+                        $scope.cargandoUPInvoices = false;
+                        $scope.$evalAsync();
+                  },
+                  cache: false,
+                  processData: false
+            });
+            $scope.cargandoUPInvoices = false;
+            // $.ajax(
+            //       {
+            //             url: $scope.urlWS + "upload/foto/",
+            //             type: post
+            //             headers:
+            //             {
+            //                   "authorization": "Bearer " + $scope.token
+            //             },
+            //             data:
+            //             {
+
+            //             },
+            //             beforeSend: function (xhr) 
+            //             {
+            //                   $scope.cargandoUPInvoices = true;
+            //             },
+            //             success: function (resultado, textStatus, jqXHR) 
+            //             {
+            //                   $scope.upInvoice = resultado;
+            //                   $scope.cargandoUPInvoices = false;
+            //                   $scope.$evalAsync();
+            //             }
+
+            //       });
+      }
+      $scope.uploadMany = function (formularioID)
+      {
+      }
+</script>

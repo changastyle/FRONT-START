@@ -1,0 +1,81 @@
+<div class="cont-formato-comun col-12 sin-padding">
+
+      <!-- 1 - BARRA LATERAL:-->
+      <div class="cont-contenido col-12 sin-padding flex">
+
+            <div class="cont-barra-lateral  col-2 sin-padding">
+                  <include src="./comun/barra-lateral.html"></include>
+            </div>
+
+            <div class="cont-contenido col-10 sin-padding">
+
+                  <!-- 2 - BANNER SUPERIOR: -->
+                  <div class="banner-sup col-12 flex sin-padding flex-center flex-center-v">
+                        <div class="banner-sup-mid col-8">
+                        </div>
+                        <div class="banner-sup-der col-4 flex flex-end  sin-padding" style="padding-right: 50px;">
+
+                              <span class="nombre-operador-logeado flex-center flex-center-v"
+                                    style="padding-right: 20px;">
+                                    <!-- Vallejos, Maria Laura -->
+                                    {{operadorLogeado.fullName}}
+                              </span>
+
+                              <div class=" img-operador-logeado img-bg "
+                                    style="background-image:url('{{operadorLogeado.fotoPerfil.fullFoto}}')">
+
+                              </div>
+                              <div class="img-notificaciones  flex-center flex-center-v">
+                                    <i class="fa-regular fa-bell"></i>
+                                    <div class="rojito-notificaciones"></div>
+                              </div>
+
+                        </div>
+                  </div>
+
+                  <!-- 3 - REAL CONTENIDO: -->
+                  <div class="real-contenido p-25">
+
+
+
+
+
+
+
+
+
+
+
+
+                        <style>
+                              .cont-formato-comun {
+                                    min-height: 80px;
+                                    background-color: #e3e3e3;
+                              }
+
+                              .banner-sup {
+                                    height: 80px;
+                                    background-color: white;
+                              }
+
+                              .img-operador-logeado {
+                                    width: 50px;
+                                    height: 50px;
+                              }
+
+                              .img-notificaciones {
+                                    width: 50px;
+                                    height: 50px;
+                                    font-size: 30px;
+                              }
+
+                              .rojito-notificaciones {
+                                    width: 8px;
+                                    height: 8px;
+                                    background-color: red;
+                                    border-radius: 10px;
+                                    position: relative;
+                                    top: -10px;
+                                    right: 1px;
+                              }
+                        </style>

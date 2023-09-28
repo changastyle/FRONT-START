@@ -1,0 +1,62 @@
+<div class="cont-formato-comun col-12 sin-padding">
+
+      <!-- 1 - CONTENEDOR LOADING USER LOGEADO: -->
+      <!-- TODO:ng-show="cargandoLogeado"-->
+      <div class="cont-loading-user">
+
+            <div class="centrador-vertical flex flex-center flex-center-v" style="height: 100%;">
+
+
+                  <div class="img-loading-user">
+                        <div class="centrador-img-loading-user flex-center flex-center-h flex-center-v">
+                              <i class="fa fa-circle-o-notch fa-spin" aria-hidden="true"></i>
+                        </div>
+                  </div>
+                  <div class="centrador-h3-loading-user col-12 flex-center">
+                        <h3 class="h3-loading-user">Cargando..</h3>
+                  </div>
+            </div>
+      </div>
+
+      <!-- 2 - CONTENEDOR REAL CONTENIDO: -->
+      <!-- todo: ng-show="!cargandoLogeado && jwt != null"-->
+      <div class="cont-real-contenido">
+
+            <div class="col-12 debug" ng-show="debug">
+                  JWT:{{jwt}}
+            </div>
+
+
+            <style>
+                  .cont-formato-comun {
+                        min-height: 100vh;
+
+                        background-color: grey;
+                  }
+
+                  .cont-loading-user {
+                        position: absolute;
+                        top: calc(50% - 100px);
+                        left: calc(50% - 150px);
+                        height: 200px;
+                        width: 300px;
+                        border-radius: 15px;
+                        background-color: white;
+                  }
+
+                  .h3-loading-user {
+                        font-family: Montserrat;
+                  }
+
+                  .centrador-img-loading-user {
+                        height: 100px;
+                  }
+
+                  .img-loading-user {
+                        font-size: 100px;
+                  }
+
+                  .cont-real-contenido {
+                        background-color: white;
+                  }
+            </style>

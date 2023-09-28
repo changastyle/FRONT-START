@@ -1,0 +1,49 @@
+<div class="cont-tabla-cambios-estado">
+      <table class="tabla-cambios-estado table">
+            <thead>
+                  <th class="th">Estado Actual</th>
+                  <th class="th">Fecha</th>
+                  <th class="th">Operador</th>
+                  <th class="th">Mov</th>
+            </thead>
+            <tr ng-repeat="cambioEstadoLoop in invoiceSelected.arrCambiosEstado">
+
+                  <td>
+                        <div class="btn-estado" style="background-color:{{cambioEstadoLoop.estadoActual.color}} ;">
+                              {{cambioEstadoLoop.estadoActual.nombre}}
+                              <!-- {{cambioEstadoLoop.estadoActual.color}} -->
+                        </div>
+                  </td>
+                  <td>
+                        <div class="btn-estado-transpa">
+                              {{cambioEstadoLoop.fechaSTR | dateNico}}
+                              <!-- {{cambioEstadoLoop.fechaSTR | dateNicoHoraMin}} -->
+                        </div>
+                  </td>
+                  <td class="td-50">
+                        <div class="btn-estado-transpa">
+                              {{cambioEstadoLoop.operador.fullName}}
+                        </div>
+                  </td>
+                  <td>
+                        <div class="btn-estado-transpa">
+                              {{cambioEstadoLoop.id}}
+                        </div>
+                  </td>
+            </tr>
+      </table>
+</div>
+<style>
+      .cont-tabla-cambios-estado {
+            border-left: solid 1px var(--verde);
+            border-right: solid 1px var(--verde);
+            border-bottom: solid 1px var(--verde);
+      }
+
+      .th {
+            text-align: center;
+            ;
+      }
+
+      .td-50 {}
+</style>

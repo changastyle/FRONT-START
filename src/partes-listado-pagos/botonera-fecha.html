@@ -1,0 +1,95 @@
+<div class="cont-botonera-fecha col-12 flex">
+      <div class="flecha-izq flechas-fecha col-2 flex-center-h flex-center-v pointer" ng-click="avanzarMes(false)">
+            <i class="fa-solid fa-chevron-left icono-flecha-fecha"></i>
+      </div>
+      <div class="contenedor-mes col-8 flex-center-h flex-center-v ">
+            {{fechaEmulada | myDate }}
+            <!-- - aumento: {{aumentoMes}} -->
+      </div>
+      <div class="flecha-der flechas-fecha col-2 flex-center-h flex-center-v pointer" ng-click="avanzarMes(true)">
+            <i class="fa-solid fa-chevron-right icono-flecha-fecha"></i>
+      </div>
+</div>
+
+<style>
+      .cont-botonera-fecha {
+            background-color: var(--verde);
+            padding: 15px;
+      }
+
+      .contenedor-mes {
+            color: white;
+            text-align: center;
+            font-weight: bold;
+            font-size: 32px;
+      }
+
+      .flechas-fecha {
+            background-color: rgba(0, 0, 0, 0.25);
+            border-radius: 50px;
+            cursor: pointer;
+            color: white;
+      }
+
+      .icono-flecha-fecha {
+            font-weight: 900;
+            font-size: 24px;
+      }
+</style>
+
+<script inyectado>
+      $scope.ya = new Date();
+      $scope.fechaEmulada = $scope.ya;
+      $scope.aumentoMes = 0;
+
+      $scope.avanzarMes = function (avanzar)
+      {
+            if (avanzar)
+            {
+                  $scope.aumentoMes++;
+            }
+            else
+            {
+                  $scope.aumentoMes--;
+            }
+
+            $scope.mesEmulado = $scope.ya.getMonth() + $scope.aumentoMes;
+            $scope.yearEmulado = $scope.ya.getFullYear();
+
+            while ($scope.mesEmulado > 12)
+            {
+                  $scope.mesEmulado = $scope.mesEmulado - 12;
+                  $scope.yearEmulado++;
+            }
+            while ($scope.mesEmulado < 0)
+            {
+                  $scope.mesEmulado = $scope.mesEmulado + 12;
+                  $scope.yearEmulado--;
+            }
+
+            $scope.fechaEmulada = new Date($scope.yearEmulado, $scope.mesEmulado, 1);
+            $scope.$evalAsync();
+      }
+      $scope.resolverNombreMes = function (numeroMes)
+      {
+            nombreMes = "";
+
+            switch (numeroMes)
+            {
+                  case 1: nombreMes = "Enero"; break;
+                  case 2: nombreMes = "Febrero"; break;
+                  case 3: nombreMes = "Marzo"; break;
+                  case 4: nombreMes = "Abril"; break;
+                  case 5: nombreMes = "Mayo"; break;
+                  case 6: nombreMes = "Junio"; break;
+                  case 7: nombreMes = "Julio"; break;
+                  case 8: nombreMes = "Agosto"; break;
+                  case 9: nombreMes = "Septiembre"; break;
+                  case 10: nombreMes = "Octubre"; break;
+                  case 11: nombreMes = "Noviembre"; break;
+                  case 12: nombreMes = "Diciembre"; break;
+            }
+
+            return nombreMes;
+      }
+</script>

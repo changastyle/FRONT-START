@@ -1,0 +1,949 @@
+<html><head>
+
+      <meta charset="UTF-8 ">
+
+      <!-- COLOR BARRA : -->
+      <meta content="width=device-width, user-scalable=no" name="viewport">
+      <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+      <meta name="theme-color" content="#E36B2C">
+
+      <!-- FAVICON : -->
+      <link rel="icon" href="../res/img/rocket.png" />
+
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-sanitize.js"></script>
+
+      <!-- BS4: -->
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
+      <!-- FONT AWESOME: -->
+      <script src="https://kit.fontawesome.com/01ed377a67.js" crossorigin="anonymous"></script>
+
+      <!-- SUMMERNOTE: -->
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
+
+      <!-- NG SANITIZE: -->
+      <!-- ng-bind-html="myText" -->
+      <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-sanitize.js"></script>
+
+      <!-- FONTS: -->
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,500;1,600;1,700;1,800&display=swap"
+            rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;1,400&family=Source+Sans+Pro&family=Ubuntu:ital,wght@0,300;0,400;1,300&display=swap"
+            rel="stylesheet">
+      <!-- <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap" rel="stylesheet"> -->
+      <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700&display=swap" rel="stylesheet">
+      <!-- DE ACA SE PUEDE BORRAR: -->
+      <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"> -->
+      <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" rel="stylesheet" /> -->
+      <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> -->
+      <!-- <script async defer src="https://apis.google.com/js/platform.js"></script> -->
+
+</head>
+
+<body ng-app="app" ng-controller="ctl" ng-init="init()" ng-cloak class="body sin-padding col-12">		<div class="cont-index col-12 sin-padding flex">
+		      <div class="col-12 col-sm-4 col-lg-6 index-izq partes-index bg-black bg-login 	d-none d-sm-block">
+		      </div>
+		      <div class="col-12 col-sm-8 col-lg-6 index-der flex-center flex-center-v  partes-index  bg-white">
+		    <div class="cont-cuadro-login col-10 col-sm-8 col-xl-6">
+		    
+		          <div class="cont-lbl-iniciar-sesion" style="margin-bottom: 45px;">
+		                <h3 class="lbl-iniciar-sesion">
+		                      INICIAR SESION
+		                </h3>
+		          </div>
+		    
+		          <!-- EMAIL: -->
+		          <div class="form-group col-12 sin-padding">
+		                <label for="exampleInputEmail1">Email address</label>
+		                <input type="text" class="col-12 input-nico" placeholder="ejemplo@gmail.com" ng-model="email">
+		                <small id="emailHelp" class="form-text text-muted pl-25">
+		                      Ingresa el correo asociado a tu cuenta
+		                </small>
+		          </div>
+		    
+		          <!-- CLAVE: -->
+		          <div class="form-group col-12 sin-padding">
+		                <label for="exampleInputEmail1">Contraseña</label>
+		    
+		                <input type="password" class="col-12 input-nico" placeholder="Escibe tu clave.." ng-model="pass"
+		                      ng-hide="mostrarClave">
+		                <input type="text" class="col-12 input-nico" placeholder="Escibe tu clave.." ng-model="pass"
+		                      ng-show="mostrarClave">
+		    
+		                <span class="ojito flex-center pointer" ng-click="mostrarClave = !mostrarClave">
+		                      <i class="fa-solid fa-eye" ng-show="mostrarClave"></i>
+		                      <i class="fa-solid fa-eye-slash" ng-hide="mostrarClave"></i>
+		                </span>
+		                <!-- <small id="emailHelp" class="form-text text-muted">
+		                      Ingresa el correo asociado a tu cuenta
+		                </small> -->
+		          </div>
+		    
+		          <div class="cont-btn-login">
+		                <button class="btn btn-vd col-12" ng-click="logearse()">
+		                      <i class="fa-solid fa-check" ng-hide="ingresando"></i>
+		                      <i class="fa fa-circle-o-notch fa-spin" ng-show="ingresando"></i>
+		                      Ingres<span ng-hide="ingresando">ar</span><span ng-show="ingresando">ando..</span>
+		                </button>
+		          </div>
+		    
+		          <div class="debug-login" ng-show="debug">
+		                <div class="col-12">
+		                      JWT: {{jwt}}
+		                </div>
+		                <div class="col-12">
+		                      Operador: {{operadorLogeado}}
+		                </div>
+		          </div>
+		    </div>
+		    <style>
+		          .lbl-iniciar-sesion {
+		                font-size: 34px;
+		                font-family: 'Montserrat';
+		                color: #797878;
+		                font-weight: 400;
+		    
+		          }
+		    
+		          .ojito {
+		                width: 50px;
+		                height: 50px;
+		                position: absolute;
+		                top: 35px;
+		                right: 10px
+		          }
+		    </style>
+		      </div>
+		</div>
+		<style>
+		      .partes-index {
+		            min-height: 100vh;
+		      }
+		
+		      .bg-login {
+		            background-image: url('../res/img/login-bg.jpg');
+		            background-size: cover;
+		            background-repeat: no-repeat;
+		            background-position: top center;
+		      }
+		</style>
+</body>
+<script>
+      app = angular.module('app', ['ngSanitize']);
+
+      // <input type="file" custom-on-change="changeUploadFile">
+      //     $scope.changeUploadFile = function (event)
+      //       {
+      //             var files = event.target.files;
+      //       };
+      app.directive('customOnChange', function ()
+      {
+            return {
+                  restrict: 'A',
+                  link: function (scope, element, attrs)
+                  {
+                        var onChangeHandler = scope.$eval(attrs.customOnChange);
+                        element.on('change', onChangeHandler);
+                        element.on('$destroy', function ()
+                        {
+                              element.off();
+                        });
+
+                  }
+            };
+      });
+      app.filter('myDate', function ($filter)
+      {
+            return function (strDate)
+            {
+                  strFecha = "";
+
+                  if (strDate == null)
+                  {
+                        strFecha = "";
+                  }
+
+                  fecha = new Date(strDate);
+
+                  strDiaSemana = "";
+                  switch (fecha.getDay())
+                  {
+                        case 1: strDiaSemana = "Lunes"; break;
+                        case 2: strDiaSemana = "Martes"; break;
+                        case 3: strDiaSemana = "Miercoles"; break;
+                        case 4: strDiaSemana = "Jueves"; break;
+                        case 5: strDiaSemana = "Viernes"; break;
+                        case 6: strDiaSemana = "Sabado"; break;
+                        case 0: strDiaSemana = "Domingo"; break;
+                  }
+                  strMes = ""
+
+                  switch (fecha.getMonth())
+                  {
+                        case 0: strMes = "Enero"; break;
+                        case 1: strMes = "Febrero"; break;
+                        case 2: strMes = "Marzo"; break;
+                        case 3: strMes = "Abril"; break;
+                        case 4: strMes = "Mayo"; break;
+                        case 5: strMes = "Junio"; break;
+                        case 6: strMes = "Julio"; break;
+                        case 7: strMes = "Agosto"; break;
+                        case 8: strMes = "Septiembre"; break;
+                        case 9: strMes = "Octubre"; break;
+                        case 10: strMes = "Noviembre"; break;
+                        case 11: strMes = "Diciembre"; break;
+                  }
+
+                  //        strYear = "20" + (fecha.getYear() - 100);
+                  strYear = fecha.getYear() + 1900;
+
+                  strFecha = strMes + " " + strYear;
+                  return strFecha;
+            };
+      });
+      app.filter('dateNico', function ($filter)
+      {
+            return function (strDate)
+            {
+                  strFecha = "";
+
+                  fecha = new Date(strDate);
+
+                  // 1 - DIA
+                  dia = fecha.getDay();
+                  if (dia < 10)
+                  {
+                        strDia = "0" + dia;
+                  }
+                  else
+                  {
+                        strDia = dia;
+                  }
+
+                  // 2 - MES
+                  mes = fecha.getMonth() + 1;
+                  if (mes < 10)
+                  {
+                        strMes = "0" + mes;
+                  }
+                  else
+                  {
+                        strMes = mes;
+                  }
+
+                  // 3 - AÑO:
+                  strYear = fecha.getYear() + 1900;
+
+                  // 4 - CONJUGACION DE LA FECHA:
+                  strFecha = strDia + "/" + strMes + "/" + strYear;
+
+                  return strFecha;
+            };
+      });
+      app.filter('dateNicoMesYear', function ($filter)
+      {
+            return function (strDate)
+            {
+                  strFecha = "";
+
+                  fecha = new Date(strDate);
+
+                  // 1 - DIA
+                  // dia = fecha.getDay();
+                  // if (dia < 10)
+                  // {
+                  //       strDia = "0" + dia;
+                  // }
+                  // else
+                  // {
+                  //       strDia = dia;
+                  // }
+
+                  // 2 - MES
+                  mes = fecha.getMonth() + 1;
+                  if (mes < 10)
+                  {
+                        strMes = "0" + mes;
+                  }
+                  else
+                  {
+                        strMes = mes;
+                  }
+
+                  // 3 - AÑO:
+                  strYear = fecha.getYear() + 1900;
+
+                  // 4 - CONJUGACION DE LA FECHA:
+                  strFecha = strMes + "/" + strYear;
+
+                  return strFecha;
+            };
+      });
+      app.filter('dateNicoHoraMin', function ($filter)
+      {
+            return function (strDate)
+            {
+                  strRta = "";
+
+                  fecha = new Date(strDate);
+
+                  // 1 - HOURS
+                  hours = fecha.getHours();
+                  if (hours < 10)
+                  {
+                        strHours = "0" + hours;
+                  }
+                  else
+                  {
+                        strHours = hours;
+                  }
+
+                  // 2 - MINUTES:
+                  minutes = fecha.getMinutes();
+                  if (minutes < 10)
+                  {
+                        strMinutes = "0" + minutes;
+                  }
+                  else
+                  {
+                        strMinutes = minutes;
+                  }
+
+                  // 4 - CONJUGACION DE LA FECHA:
+                  strRta = "(" + strHours + ":" + strMinutes + ")";
+
+                  return strRta;
+            };
+      });
+      app.filter('zero', function ($filter)
+      {
+            return function (numero)
+            {
+                  rta = "";
+
+
+                  if (numero < 10)
+                  {
+                        rta = "0" + numero;
+                  }
+                  else
+                  {
+                        rta = numero;
+                  }
+
+                  return rta;
+            };
+      });
+
+      app.controller('ctl', function ($scope)
+      {	      $scope.mostrarClave = false;
+	      $scope.debug = false;
+	      $scope.init = function ()
+	      {
+	            console.log("INIT INDEX");
+	            $scope.comprobarOperadorLogeado();
+	      }
+    
+    $scope.debugMode = false;
+    $scope.verbose = false;
+    
+    
+    $scope.MODO_LOCAL = true;
+    $scope.urlWS = "";
+    $scope.url_DEV = "http://192.168.0.107:8999/";
+    $scope.url_PROD = "https://wiz.viewdevs.com.ar/";
+    
+    $scope.year = new Date().getFullYear();
+    
+    if ($scope.MODO_LOCAL)
+    {
+          console.log("MODO DEV LOCAL");
+          $scope.urlWS = $scope.url_DEV;
+          $scope.$evalAsync();
+    }
+    else
+    {
+          console.log("MODO PROD");
+          $scope.urlWS = $scope.url_PROD;
+          $scope.$evalAsync();
+    }
+    
+    
+    
+    
+    
+    
+    $scope.ponerParametroEnURL = function(nombreParametro, valorParametro, reload)
+    {
+        console.log("ponerParametroEnURL");
+        
+        url = window.location.href;
+        console.log("URL:" + url);
+        
+        valorAnterior = $scope.dameValorDelParametroFromURL(nombreParametro);
+        posI = url.indexOf(nombreParametro + "=" );
+        subURL = url.substr(posI,url.length);
+        console.log("subURL:" + subURL);
+        posF = posI + subURL.indexOf("&");
+        posSignoPregunta = url.indexOf("?");
+        
+        if(posF == -1)
+        {
+            posF = url.length;
+        }
+        if(posF < posI)
+        {
+            posF = url.length;
+        }
+        posSignoPregunta = url.indexOf("?");
+        if(posSignoPregunta == -1)
+        {
+            url = url + "?";
+        }
+        
+        console.log("valor anterior: " + valorAnterior + " POSI =" + posI +  " | POSF = " + posF);
+        if( valorAnterior != -1 )
+        {
+            // YA TENGO EL PARAMETRO EN URL:
+            preUrl = url.substr(0,(posI-1));
+            postUrl = url.substring(posF, url.length);
+            url =  preUrl + postUrl;
+            console.log("preUrl (" + 0 + "," + (posI-1) + ") :" + preUrl);
+            console.log("postUrl (" + posF + "," + url.length + "):" + postUrl);
+            console.log("URL CORTADA: " + url);
+            
+            if(valorParametro != -1)
+            {
+                url += "&" + nombreParametro + "=" + valorParametro;
+            }
+        }
+        else
+        {
+            // TODAVIA NO TENGO ESE PARAMETRO EN URL:
+            if(valorParametro != -1)
+            {
+                url +=  "&" + nombreParametro + "=" + valorParametro;
+            }
+        }
+        
+        window.history.pushState("object or string", "Title", url);
+        if(reload)
+        {
+          $scope.scrollearSuaveA("carrusel");
+          
+          setTimeout(function()
+          {
+                location.reload();
+    
+          },1500)
+        }
+    }
+    $scope.dameValorDelParametroFromURL = function(nombreParametro)
+    {
+          var url_string = window.location.href;
+          var url = new URL(url_string);
+          var parametro = url.searchParams.get(nombreParametro);
+    
+          if(parametro == null || parametro.length == 0)
+          {
+                parametro = -1;
+          }
+          return parametro;
+    }
+    
+    $scope.openNewTab = function(direccion)
+    {
+          window.open(direccion,'_blank');
+    }
+    $scope.ir = function(direccion)
+    {
+          $scope.openNewTab(direccion);
+    }
+    $scope.redirect = function(direccion)
+    {
+          $scope.openNewTab(direccion);
+    }
+    $scope.redireccionamiento = function(direccion)
+    {
+          window.location.href=direccion;
+    }
+    $scope.redireccionamientoNewTab = function(direccion)
+    {
+          $scope.openNewTab(direccion);
+    }
+    $scope.redirectSameTab = function(direccion)
+    {
+          window.open(direccion);
+    }
+    $scope.endsWith = function(valorBuscado, cadena)
+    {
+          rta = false;
+    
+          str = "" + cadena;
+    
+          largoCadena = str.length;
+          largoValorBuscado = valorBuscado.length;
+    
+          posInicial = largoCadena - largoValorBuscado;
+          posFinal = largoCadena;
+          subStr = str.substring(posInicial , posFinal);
+    
+          if(JSON.stringify(subStr) === JSON.stringify(valorBuscado))
+          {
+                rta = true;
+          }
+    
+          console.log("(" + cadena + ").ENDWITH -> buscado: " + valorBuscado +" | encontrado : " + subStr +  " = " + rta);
+    
+          return rta;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    $scope.propsSummernote = {
+          height: 180,
+          fontSizes: 
+          [
+                '8', 
+                '9', 
+                '10',
+                '11',
+                '12',
+                '14',
+                '18',
+                '24',
+                '36',
+                '48'
+          ],
+          popover:
+          {
+                image: [],
+                link: [],
+                air: []
+          },
+          toolbar:
+          [
+                ['style', ['style']],
+                ['font', ['bold', 'italic', 'underline', 'clear']],
+                ['fontname', ['fontname']],
+                ['color', ['color']],
+                ['insert', ['link', 'picture', 'hr']],
+                ['view', ['fullscreen', 'codeview']]
+          ],
+    };
+    
+    
+    $scope.capitalize = function(cadena)
+    {
+        return cadena.charAt(0).toUpperCase() + cadena.slice(1);
+    }
+    
+    
+    //FUNCIONES DE LOGEO:
+    $scope.operadorLogeado = null;
+    
+    $scope.comprobarOperadorLogeado = function(ifNoneRedirectLogin)
+    {
+        logeado = false;
+        $scope.cargandoLogeado = true;
+        token = $scope.getJWT();
+        console.log("2 - COMPROBAR OPERADOR LOGEADO JWT : [" + token + "]");
+        
+        if(token != null && token != "null")
+        {
+            
+            $.ajax(
+                {
+                    url: $scope.urlWS +"/operador/dameOperadorLogeado",
+                    type:'POST',
+                    async: true,
+                    headers: 
+                {
+                    "Authorization":"Bearer " + token
+                },
+                beforeSend: function (xhr) 
+                {
+                    $scope.cargandoLogeado = true;
+                },
+                error: function (jqXHR, textStatus, errorThrown) 
+                {
+        //            window.location.href = $scope.urlLogin; 
+                    $scope.setJWT(null);
+                    $scope.redireccionamiento("index.html")
+                    // console.log("debo ir a login");
+                },
+                success: function (resultado, textStatus, jqXHR) 
+                {
+                    $scope.cargandoLogeado = false;
+                    $scope.$evalAsync();
+                    
+                    url = window.location.href;
+                    console.log("OPERADOR LOGEADO OK: " + JSON.stringify(resultado) + " -> URL: " + url );
+                    if(resultado != null && resultado != "undefined")
+                    {
+                        $scope.usrLogeado = resultado;
+                        $scope.operadorLogeado = resultado;
+                        logeado = resultado;
+                        $scope.$evalAsync();
+    
+                        maxLargoURL = url.length;
+                        lastSimbol = url.substring( (maxLargoURL - 1) , maxLargoURL);
+                        console.log("url:" + url);
+    
+                        if(url.indexOf("login.html") > -1 || url.indexOf("index.html") > -1 || lastSimbol == "/")
+                        {
+                            console.log("DEBO REDIRECCIONAR A HOME");
+                            $scope.redireccionamiento("home.html")
+                        }
+                    }
+                }
+            });
+        }
+        else
+        {
+            $scope.usrLogeado = null;
+            $scope.operadorLogeado = null;
+            $scope.$evalAsync();
+    
+            console.log("3 - DEBO LOGEARME PARA TENER UN TOKEN : [" + token + "]");
+    
+            if(ifNoneRedirectLogin)
+            {
+                console.log("debo ir a login  por que no tengo token");
+    
+                $scope.redireccionamiento('index.html')
+                //TODO:$scope.redireccionamiento('login.html')
+            }
+        }
+        return logeado;
+    }
+    $scope.getJWT = function ()
+    {
+        $scope.jwt = localStorage.getItem('jwtToken');
+        $scope.token = localStorage.getItem('jwtToken');
+        console.log("1 - GETTING JWT FROM LOCALSTORAGE : [" + $scope.token + "] -> OP : "+ $scope.operadorLogeado );;
+        
+        if($scope.jwt == null || $scope.jwt == "null" || $scope.token == null)
+        {
+            url = $scope.getLastSlashURL();
+            $scope.operadorLogeado = null;
+    
+            if(url != "index.html")
+            {
+                console.log("DEBO REDIRECCIONAR A INDEX!");
+                $scope.redireccionamiento("index.html")
+            }
+        }
+        $scope.$evalAsync();
+    
+        return $scope.jwt;
+    }
+    $scope.setJWT = function (valor)
+    {
+        console.log("SETEANDO JWT [LOCAL - STORAGE]:" + valor);
+        localStorage.setItem('jwtToken', valor);
+        $scope.jwt = valor
+        $scope.token = valor;
+        $scope.$evalAsync();
+    
+    
+        $scope.comprobarOperadorLogeado();
+    }
+    $scope.logearse = function ()
+    {
+        console.log("logearse:" + $scope.urlWS);
+        $.ajax(
+                {
+                    url: $scope.urlWS + "operador/logearse",
+                    type: 'POST',
+                    data:
+                    {
+                            "email": $scope.email,
+                            "pass": $scope.pass,
+                    },
+                    beforeSend: function (xhr) 
+                    {
+                            $scope.ingresando = true;
+                    },
+                    error: function (jqXHR, textStatus, errorThrown)
+                    {
+                            $scope.ingresando = false;
+                            $scope.$evalAsync();
+                    
+                            strError = "ERROR AL LOGEARSE : ";
+                            if(jqXHR.status == 0)
+                            {
+                                strError += "Timeout (" + jqXHR.status  + ")";
+                            }
+    
+                            alert(strError)
+                            //$scope.snack('ERROR AL INGRESAR!')
+                    },
+                    success: function (resultado, textStatus, jqXHR) 
+                    {
+                        console.log("RES LOGEARSE: JWT :  " + resultado);
+                        $scope.setJWT(resultado);
+    
+                        if (resultado != null)
+                        {
+                            
+                        }
+                        else
+                        {
+                            $scope.ingresando = false;
+                            $scope.$evalAsync();
+                        }
+                    }
+    
+                });
+    
+    }
+        
+    $scope.exit = function()
+    {
+        $scope.setJWT(null);
+        //localStorage.setItem('jwtToken', null);
+        $scope.comprobarOperadorLogeado(true);
+    }
+    
+    
+    $scope.getLastSlashURL = function()
+    {
+        url = window.location.href;
+        rta = url;
+        posLastSlash = url.lastIndexOf("/");   
+    
+        if(posLastSlash != -1)
+        {
+            lastPart = url.substring( (posLastSlash + 1) , url.length);
+            rta = lastPart;
+            console.log("URL ACTUAL: " + rta );
+            // console.log("URL (" + posLastSlash +") : " + url + " -> "+  rta );
+        }
+        return rta;
+    }
+    
+    
+    $(document).ready(function()
+    {
+          // 1 - LISTENER DE RESIZE EVENT:
+          $scope.xl = false;
+          $scope.lg = false;
+          $scope.md = false;
+          $scope.sm = false;
+          $scope.xs = true;
+    
+          console.log("JQuery ready");
+          $scope.resize();
+    
+          $(window).on('resize', function()
+          {
+                $scope.resize();
+          });
+    
+          document.addEventListener('scroll', function(e)
+          {
+                var top  = window.pageYOffset || document.documentElement.scrollTop;
+                // console.log("SCROLEANDOsss122.."+ JSON.stringify(top))
+    
+                tengoClasePuesta = $("#cont-menu").hasClass("transparency-menu")
+    
+                if(top > 550)
+                {
+                      
+                      if( !tengoClasePuesta )
+                      {
+                            console.log("AGREGANDO TRANSPARENCY A MENU");
+                            $("#cont-menu").addClass("transparency-menu");
+                      }
+                }
+                else
+                {
+                      if( tengoClasePuesta )
+                      {
+                            console.log("QUITANDO TRANSPARENCY A MENU");
+                            $("#cont-menu").removeClass("transparency-menu");
+                      }
+                }
+          }, true);
+    });   
+    
+    $scope.SIZEANT = 0;
+    $scope.SIZEX = "LG";
+    $scope.resize = function()
+    {
+          var win = $(window); //this = window
+          ancho = win.innerWidth();
+          // console.log("RESIZE: " + ancho);
+          
+          if(ancho < $scope.anchoMinimoWEB)
+          {
+                console.log("ANCHO MINIMO :" + $scope.anchoMinimoWEB + " | " + ancho);
+          }
+          
+          if (ancho > 1200) 
+          {
+                $scope.xl = true;
+                $scope.lg = false;
+                $scope.md = false;
+                $scope.sm = false;
+                $scope.xs = false;
+                $scope.SIZEANT = $scope.SIZEX;
+                $scope.SIZEX = "XL";
+    
+                $scope.$evalAsync();
+    
+                if($scope.verbose)
+                {
+                      console.log("ENTRE XL! " + $scope.SIZEX);
+                }
+          }
+          else if(ancho < 1200 && ancho > 992)
+          {
+                $scope.xl = false;
+                $scope.lg = true;
+                $scope.md = false;
+                $scope.sm = false;
+                $scope.xs = false;
+                $scope.SIZEANT = $scope.SIZEX;
+                $scope.SIZEX = "LG";
+    
+                $scope.$evalAsync();
+    
+                if($scope.verbose)
+                {
+                      console.log("ENTRE LG! " + $scope.SIZEX);
+                }
+          }
+          else if(ancho < 992 && ancho > 768)
+          {
+                $scope.xl = false;
+                $scope.lg = false;
+                $scope.md = true;
+                $scope.sm = false;
+                $scope.xs = false;
+                $scope.SIZEANT = $scope.SIZEX;
+                $scope.SIZEX = "MD";
+    
+                $scope.$evalAsync();
+    
+                if($scope.verbose)
+                {
+                      console.log("ENTRE MD! "  + $scope.SIZEX);
+                }
+          }
+          else if(ancho < 768 && ancho > 576)
+          {
+                $scope.xl = false;
+                $scope.lg = false;
+                $scope.md = false;
+                $scope.sm = true;
+                $scope.xs = false;
+                $scope.SIZEANT = $scope.SIZEX;
+                $scope.SIZEX = "SM";
+    
+                $scope.$evalAsync();
+    
+                if($scope.verbose)
+                {
+                      console.log("ENTRE SM! "  + $scope.SIZEX);
+                }
+          }
+          else if ( ancho < 576)
+          {
+                $scope.xl = false;
+                $scope.lg = false;
+                $scope.md = false;
+                $scope.sm = false;
+                $scope.xs = true;
+                $scope.SIZEANT = $scope.SIZEX;
+                $scope.SIZEX = "XS";
+    
+                $scope.$evalAsync();
+    
+                if($scope.verbose)
+                {
+                      console.log("ENTRE XS! " + $scope.SIZEX);
+                }
+          }
+          
+          
+          if($scope.xs || $scope.sm || $scope.md)
+          {
+                $scope.mostrarBusqueda = false;
+          }
+                
+          $scope.ancho = ancho;
+          $scope.$evalAsync();
+    
+          if($scope.SIZEANT != $scope.SIZEX)
+          {
+                console.log("RESIZE ancho:" + ancho + " | TAMANO: " + $scope.SIZEX );
+          }
+          
+    }
+    
+    
+    $scope.refresca = function()
+    {
+        var html = $scope.getHTML();
+        console.log("html:" + html);
+    }
+    $scope.setearHTML = function(idSummernote, texto)
+    {
+        // VERIFICA QUE TENGA UN HASHTAG ADELANTE SINO LO AGREGA:
+        if(!idSummernote.startsWith("#"))
+        {
+            idSummernote = "#" + idSummernote;
+        }
+    
+        console.log("SETEANDO SUMMERNOTE: " + idSummernote + " -> " + texto);
+    
+        if(texto != null)
+        {
+            console.log("seteando: " + texto);
+    
+            $(idSummernote).summernote('code', texto);
+            // $('#summernote').summernote('code', texto);
+        }
+        else
+        {
+            $(idSummernote).summernote('code', texto);
+            // $('#summernote').summernote('code', "");
+        }
+    }
+    $scope.getHTML = function(idSummernote)
+    {
+            // VERIFICA QUE TENGA UN HASHTAG ADELANTE SINO LO AGREGA:
+        if(!idSummernote.startsWith("#"))
+        {
+            idSummernote = "#" + idSummernote;
+        }
+    
+        var markupStr = $(idSummernote).summernote('code');
+    
+        // var markupStr = $('#summernote').summernote('code');
+        //console.log("VALOR: " + markupStr);
+        
+        return markupStr;
+    }})
+;
+</script>
+<link rel="stylesheet" href="../plantillas/comun.css">
+</html>

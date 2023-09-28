@@ -1,0 +1,73 @@
+<div class="cont-cuadro-login col-10 col-sm-8 col-xl-6">
+
+      <div class="cont-lbl-iniciar-sesion" style="margin-bottom: 45px;">
+            <h3 class="lbl-iniciar-sesion">
+                  INICIAR SESION
+            </h3>
+      </div>
+
+      <!-- EMAIL: -->
+      <div class="form-group col-12 sin-padding">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="text" class="col-12 input-nico" placeholder="ejemplo@gmail.com" ng-model="email">
+            <small id="emailHelp" class="form-text text-muted pl-25">
+                  Ingresa el correo asociado a tu cuenta
+            </small>
+      </div>
+
+      <!-- CLAVE: -->
+      <div class="form-group col-12 sin-padding">
+            <label for="exampleInputEmail1">Contraseña</label>
+
+            <input type="password" class="col-12 input-nico" placeholder="Escibe tu clave.." ng-model="pass"
+                  ng-hide="mostrarClave">
+            <input type="text" class="col-12 input-nico" placeholder="Escibe tu clave.." ng-model="pass"
+                  ng-show="mostrarClave">
+
+            <span class="ojito flex-center pointer" ng-click="mostrarClave = !mostrarClave">
+                  <i class="fa-solid fa-eye" ng-show="mostrarClave"></i>
+                  <i class="fa-solid fa-eye-slash" ng-hide="mostrarClave"></i>
+            </span>
+            <!-- <small id="emailHelp" class="form-text text-muted">
+                  Ingresa el correo asociado a tu cuenta
+            </small> -->
+      </div>
+
+      <div class="cont-btn-login">
+            <button class="btn btn-vd col-12" ng-click="logearse()">
+                  <i class="fa-solid fa-check" ng-hide="ingresando"></i>
+                  <i class="fa fa-circle-o-notch fa-spin" ng-show="ingresando"></i>
+                  Ingres<span ng-hide="ingresando">ar</span><span ng-show="ingresando">ando..</span>
+            </button>
+      </div>
+
+      <div class="debug-login" ng-show="debug">
+            <div class="col-12">
+                  JWT: {{jwt}}
+            </div>
+            <div class="col-12">
+                  Operador: {{operadorLogeado}}
+            </div>
+      </div>
+</div>
+<style>
+      .lbl-iniciar-sesion {
+            font-size: 34px;
+            font-family: 'Montserrat';
+            color: #797878;
+            font-weight: 400;
+
+      }
+
+      .ojito {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            top: 35px;
+            right: 10px
+      }
+</style>
+<script inyectado>
+      $scope.mostrarClave = false;
+      $scope.debug = false;
+</script>

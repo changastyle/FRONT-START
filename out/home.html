@@ -1,0 +1,1653 @@
+<html><head>
+
+      <meta charset="UTF-8 ">
+
+      <!-- COLOR BARRA : -->
+      <meta content="width=device-width, user-scalable=no" name="viewport">
+      <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+      <meta name="theme-color" content="#E36B2C">
+
+      <!-- FAVICON : -->
+      <link rel="icon" href="../res/img/rocket.png" />
+
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-sanitize.js"></script>
+
+      <!-- BS4: -->
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
+      <!-- FONT AWESOME: -->
+      <script src="https://kit.fontawesome.com/01ed377a67.js" crossorigin="anonymous"></script>
+
+      <!-- SUMMERNOTE: -->
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
+
+      <!-- NG SANITIZE: -->
+      <!-- ng-bind-html="myText" -->
+      <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-sanitize.js"></script>
+
+      <!-- FONTS: -->
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,500;1,600;1,700;1,800&display=swap"
+            rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;1,400&family=Source+Sans+Pro&family=Ubuntu:ital,wght@0,300;0,400;1,300&display=swap"
+            rel="stylesheet">
+      <!-- <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500&display=swap" rel="stylesheet"> -->
+      <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700&display=swap" rel="stylesheet">
+      <!-- DE ACA SE PUEDE BORRAR: -->
+      <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"> -->
+      <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" rel="stylesheet" /> -->
+      <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> -->
+      <!-- <script async defer src="https://apis.google.com/js/platform.js"></script> -->
+
+</head>
+
+<body ng-app="app" ng-controller="ctl" ng-init="init()" ng-cloak class="body sin-padding col-12">		    <div class="cont-formato-comun col-12 sin-padding">
+		    
+		          <!-- 1 - BARRA LATERAL:-->
+		          <div class="cont-contenido col-12 sin-padding flex">
+		    
+		                <div class="cont-barra-lateral  col-2 sin-padding">
+		        <div class="barra-lateral col-12  sin-padding">
+		        
+		              <!-- 1 - COLOR BARRA LATERAL: -->
+		              <div class="cont-color-barra-lateral col-12 pt-25">
+		        
+		                    <!-- 2 - INFO OPERADOR LOGEADO LATERAL: -->
+		                    <div class="cont-info-operador-logeado-lateral flex bsb">
+		        
+		                          <!-- 3 - IMG OPERADOR LOGEADO: -->
+		                          <div class="img-lateral-operador-logeado img-bg"
+		                                style="background-image: url('{{operadorLogeado.fotoPerfil.fullFoto}}');">
+		                          </div>
+		        
+		                          <!-- 4 - NOMBRE OPERADOR LOGEADO LATERAL: -->
+		                          <div class="nombre-operador-logeado-lateral white flex-center-v pl-15">
+		                                {{operadorLogeado.nombre}}
+		                                {{operadorLogeado.apellido}}
+		                          </div>
+		                    </div>
+		              </div>
+		        
+		              <!-- 2 - BARRA MENUS LATERAL:-->
+		              <div class="cont-menus-lateral bsr pt-30 pb-30">
+		        
+		                    <div class="menu-item-lateral pointer" ng-repeat="menuLoop in arrMenus"
+		                          ng-click="redirect(menuLoop.enlace)">
+		                          <span class="cont-icono-menu-lateral pr-2 " style="width: 30px;">
+		                                <i class="{{menuLoop.icono}}"></i>
+		                          </span>
+		                          {{menuLoop.nombre}}
+		                          {{menuLoop.enlace}}
+		                    </div>
+		        
+		              </div>
+		        
+		              <!-- 3 - BOTON SALID LATERAL:-->
+		              <div class="cont-salir-lateral flex-center p-2">
+		                    <button class="btn btn-salir" ng-click="exit()">
+		                          Cerrar Sesion
+		                    </button>
+		              </div>
+		        </div>
+		        
+		        <style>
+		              .barra-lateral {
+		                    height: 100vh;
+		                    /* height: calc(100vh - 80px); */
+		                    background-color: white;
+		              }
+		        
+		              .cont-color-barra-lateral {
+		                    height: 250px;
+		                    background-color: var(--red);
+		              }
+		        
+		              .cont-menus-lateral {
+		                    height: calc(100% - 300px);
+		                    overflow-y: auto;
+		                    overflow-x: hidden;
+		                    padding-left: 50px
+		              }
+		        
+		              .cont-menus-lateral::-webkit-scrollbar-track {
+		                    background: white;
+		              }
+		        
+		              .cont-menus-lateral::-webkit-scrollbar-thumb {
+		                    background-color: red;
+		                    border-radius: 6px;
+		                    border: 3px solid red;
+		              }
+		        
+		              .cont-salir-lateral {
+		                    height: 50px;
+		              }
+		        
+		              .img-lateral-operador-logeado {
+		                    height: 50px;
+		                    width: 50px;
+		                    padding-right: 15px;
+		              }
+		        
+		              .btn-salir {
+		                    background-color: grey;
+		                    border-radius: 20px;
+		                    color: white;
+		              }
+		        
+		              .menu-item-lateral {
+		                    padding-top: 20px;
+		                    ;
+		              }
+		        </style>
+		        
+		                </div>
+		    
+		                <div class="cont-contenido col-10 sin-padding">
+		    
+		                      <!-- 2 - BANNER SUPERIOR: -->
+		                      <div class="banner-sup col-12 flex sin-padding flex-center flex-center-v">
+		                            <div class="banner-sup-mid col-8">
+		                            </div>
+		                            <div class="banner-sup-der col-4 flex flex-end  sin-padding" style="padding-right: 50px;">
+		    
+		                                  <span class="nombre-operador-logeado flex-center flex-center-v"
+		                                        style="padding-right: 20px;">
+		                                        <!-- Vallejos, Maria Laura -->
+		                                        {{operadorLogeado.fullName}}
+		                                  </span>
+		    
+		                                  <div class=" img-operador-logeado img-bg "
+		                                        style="background-image:url('{{operadorLogeado.fotoPerfil.fullFoto}}')">
+		    
+		                                  </div>
+		                                  <div class="img-notificaciones  flex-center flex-center-v">
+		                                        <i class="fa-regular fa-bell"></i>
+		                                        <div class="rojito-notificaciones"></div>
+		                                  </div>
+		    
+		                            </div>
+		                      </div>
+		    
+		                      <!-- 3 - REAL CONTENIDO: -->
+		                      <div class="real-contenido p-25">
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		                            <style>
+		                                  .cont-formato-comun {
+		                                        min-height: 80px;
+		                                        background-color: #e3e3e3;
+		                                  }
+		    
+		                                  .banner-sup {
+		                                        height: 80px;
+		                                        background-color: white;
+		                                  }
+		    
+		                                  .img-operador-logeado {
+		                                        width: 50px;
+		                                        height: 50px;
+		                                  }
+		    
+		                                  .img-notificaciones {
+		                                        width: 50px;
+		                                        height: 50px;
+		                                        font-size: 30px;
+		                                  }
+		    
+		                                  .rojito-notificaciones {
+		                                        width: 8px;
+		                                        height: 8px;
+		                                        background-color: red;
+		                                        border-radius: 10px;
+		                                        position: relative;
+		                                        top: -10px;
+		                                        right: 1px;
+		                                  }
+		                            </style>		
+		<!-- 1- LISTADO DE MOVIMIENTOS: -->
+		    <div class="cont-movimientos">
+		          <h3 class="h-listado-movimientos">MOVIMIENTOS</h3>
+		    
+		          <table class="table">
+		                <thead>
+		                      <th>Servicio</th>
+		                      <th>Estado</th>
+		                      <th>Archivos</th>
+		                      <th>Fecha</th>
+		                      <th>Monto</th>
+		                </thead>
+		                <tbody>
+		                      <tr ng-repeat="invoiceLoop in arrInvoices" class="pointer" ng-click="openModalInvoice2(invoiceLoop)">
+		                            <td>
+		                                  <div class="bold">
+		                                        ClinicApp ({{invoiceLoop.id}})
+		                                  </div>
+		                                  <div class="">
+		                                        Periodo :
+		                                        {{"["}}{{invoiceLoop.mesPeriodo| zero}}/{{invoiceLoop.yearPeriodo}}{{"]"}}
+		                                  </div>
+		    
+		                                  {{invoiceLoop.nombre}}
+		                                  <!-- {{invoiceLoop}} -->
+		                            </td>
+		                            <td>
+		                                  <span class="btn-estado"
+		                                        style="background-color:{{invoiceLoop.lastCambioEstado.estadoActual.color}} ;">
+		                                        {{invoiceLoop.lastCambioEstado.estadoActual.nombre}}
+		                                        <!-- {{invoiceLoop.ultimoCambioEstado.estadoActual.color}} -->
+		                                  </span>
+		                                  <!-- Pendiente -->
+		                            </td>
+		                            <td>
+		                                  <span class="bold">
+		                                        {{invoiceLoop.arrRelsArchivos.length}}
+		                                  </span>
+		                                  Archivo<span ng-hide="invoiceLoop.arrRelsArchivos.length == 1">s</span>
+		                            </td>
+		                            <td>
+		    
+		                                  <span class="bold">
+		                                        {{invoiceLoop.fechaULTMOD| dateNico}}
+		                                  </span>
+		                                  <!-- 13/11/2023 -->
+		                            </td>
+		                            <td class="bold">
+		                                  {{"$" +invoiceLoop.importe}}
+		                                  <!-- $23.500 -->
+		                            </td>
+		                      </tr>
+		                </tbody>
+		          </table>
+		    </div>
+		    
+		    
+		    <style>
+		          .cont-movimientos {
+		                padding: 35px;
+		          }
+		    
+		          .h-listado-movimientos {
+		                color: #797878;
+		                font-size: 32px;
+		                font-family: Montserrat;
+		                font-weight: 700;
+		                word-wrap: break-word
+		          }
+		    
+		          .btn-estado {
+		                padding: 12px;
+		                color: white;
+		                border-radius: 50px;
+		                text-align: center;
+		          }
+		    
+		          .btn-estado-transpa {
+		                padding-top: 12px;
+		                padding-bottom: 12px;
+		                border-radius: 50px;
+		                text-align: center;
+		          }
+		    </style>		
+		    </div>
+		    </div>
+		    </div>
+		    </div>		
+		    <div class="modal" id="modal-upload-invoice">
+		          <div class="modal-dialog">
+		                <div class="modal-content">
+		    
+		                      <!-- Modal Header -->
+		                      <div class="modal-header">
+		                            <h4 class="modal-title">Modal Heading</h4>
+		                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+		                      </div>
+		    
+		                      <!-- Modal body -->
+		                      <div class="modal-body">
+		    
+		                            <!-- FORM IMG UPLOAD : -->
+		                            <form id="formulario-upload-invoices" class="col-12 sin-padding" enctype="multipart/form-data"
+		                                  method="POST">
+		    
+		                                  <!-- INPUT FILE:-->
+		                                  <input id="input-upload-invoices" class="input-upload-invoices" name="foto" type="file"
+		                                        accept="image/*" style="display: none;">
+		    
+		                                  <!-- FOTO CLICKEABLE: -->
+		                                  <img id='img-invoice' class="img-item-listado-l rounded-circle d-block mx-auto"
+		                                        ng-src="{{upInvoice.fullFoto}}" alt="{{upInvoice.fullFoto}}">
+		    
+		                                  {{upInvoice}}
+		                            </form>
+		    
+		    
+		                      </div>
+		    
+		                      <!-- Modal footer -->
+		                      <div class="modal-footer">
+		                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+		                      </div>
+		    
+		                </div>
+		          </div>
+		    </div>
+		    
+		    <style>
+		          #modal-upload-invoice {}
+		    
+		          #img-invoice {
+		                width: 150px;
+		                height: 150px;
+		                border: solid 1px red;
+		          }
+		    </style>
+		    
+		    <div class="modal" id="modal-invoice2">
+		          <div class="modal-dialog">
+		                <div class="modal-content">
+		                      <!-- Modal Header -->
+		                      <div class="modal-header">
+		                            <h4 class="modal-title">
+		                                  <span class="bold">
+		                                        Factura {{invoiceSelected.producto.nombre}} - {{invoiceSelected.cliente.nombre}}
+		                                  </span>
+		                                  <!-- {{invoiceSelected.fechaCreacion | dateNicoMesYear}} -->
+		                                  {{"("}}{{invoiceSelected.mesPeriodo | zero}}/{{invoiceSelected.yearPeriodo}}{{")"}}
+		                            </h4>
+		                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+		                      </div>
+		    
+		                      <!-- Modal body -->
+		                      <div class="modal-body">
+		    
+		                            <div class="flex col-12 sin-padding">
+		    
+		                                  <!-- IMPORTE: -->
+		                                  <div class="cont-importe col-6 ">
+		    
+		                                        <div>
+		                                              Importe:
+		                                        </div>
+		                                        <span class="bold font-24">
+		                                              {{"$" + invoiceSelected.importe}}
+		                                        </span>
+		                                  </div>
+		    
+		                                  <!-- PERIODO: -->
+		                                  <div class="cont-periodo col-6 center">
+		    
+		                                        <div>
+		                                              Periodo:
+		                                        </div>
+		                                        <span class="bold font-24">
+		                                              {{invoiceSelected.mesPeriodo | zero}}/{{invoiceSelected.yearPeriodo}}
+		                                        </span>
+		                                  </div>
+		    
+		                            </div>
+		    
+		    
+		                            <!-- CAMBIOS DE ESTADO: -->
+		                            <div class="cont-cambios-estado mt-3 mb-3 ">
+		    
+		                                  <h3 class="h-cambios-estado flex-center  brt-20 mb-0">
+		                                        Cambios de Estado {{"(" + invoiceSelected.arrCambiosEstado.length +")"}}
+		                                  </h3>
+		                                  <!-- <span class="bold"> -->
+		                                  <!-- {{invoiceSelected.arrCambiosEstado}} -->
+		                                  <!-- </span> -->
+		    
+		        <div class="cont-tabla-cambios-estado">
+		              <table class="tabla-cambios-estado table">
+		                    <thead>
+		                          <th class="th">Estado Actual</th>
+		                          <th class="th">Fecha</th>
+		                          <th class="th">Operador</th>
+		                          <th class="th">Mov</th>
+		                    </thead>
+		                    <tr ng-repeat="cambioEstadoLoop in invoiceSelected.arrCambiosEstado">
+		        
+		                          <td>
+		                                <div class="btn-estado" style="background-color:{{cambioEstadoLoop.estadoActual.color}} ;">
+		                                      {{cambioEstadoLoop.estadoActual.nombre}}
+		                                      <!-- {{cambioEstadoLoop.estadoActual.color}} -->
+		                                </div>
+		                          </td>
+		                          <td>
+		                                <div class="btn-estado-transpa">
+		                                      {{cambioEstadoLoop.fechaSTR | dateNico}}
+		                                      <!-- {{cambioEstadoLoop.fechaSTR | dateNicoHoraMin}} -->
+		                                </div>
+		                          </td>
+		                          <td class="td-50">
+		                                <div class="btn-estado-transpa">
+		                                      {{cambioEstadoLoop.operador.fullName}}
+		                                </div>
+		                          </td>
+		                          <td>
+		                                <div class="btn-estado-transpa">
+		                                      {{cambioEstadoLoop.id}}
+		                                </div>
+		                          </td>
+		                    </tr>
+		              </table>
+		        </div>
+		        <style>
+		              .cont-tabla-cambios-estado {
+		                    border-left: solid 1px var(--verde);
+		                    border-right: solid 1px var(--verde);
+		                    border-bottom: solid 1px var(--verde);
+		              }
+		        
+		              .th {
+		                    text-align: center;
+		                    ;
+		              }
+		        
+		              .td-50 {}
+		        </style>		    
+		                            </div>
+		    
+		                            <!-- LISTADO ARCHIVOS: -->
+		                            <div class="cont-archivos mt-3 mb-3">
+		    
+		                                  <h3 class="h-cambios-estado flex-center brt-20 mb-0">
+		                                        Archivos {{"(" + invoiceSelected.arrRelsArchivos.length +")"}}
+		                                  </h3>
+		                                  <!-- <span class="bold"> -->
+		                                  <!-- {{invoiceSelected.arrCambiosEstado}} -->
+		                                  <!-- </span> -->
+		    
+		        <div class="cont-archivos-real flex">
+		        
+		              <!-- {{encima}} -->
+		              <div class="item-archivo bsr" ng-repeat="relArchivoLoop in invoiceSelected.arrRelsArchivos">
+		                    <div class="centrador-img-archivo flex-center">
+		                          <div class="img-archivo bsr img-bg bg-img"
+		                                style="background-image: url('{{relArchivoLoop.archivo.fullFoto}}');">
+		                          </div>
+		                    </div>
+		                    <div class="centrador-nombre-archivo flex-center pt-3">
+		                          <!-- id="nombre-archivo-{{relArchivoLoop.id}}"
+		                                                  ng-mouseover="hoverNombreArchivo(relArchivoLoop.id)"
+		                                                  ng-mouseleave="resethoverNombreArchivo(relArchivoLoop.id)" -->
+		                          <div class="carniceria nombre-archivo pointer pl-2 pr-2" id="carniceria-{{relArchivoLoop.id}}">
+		        
+		                                <div class="contenido-carniceria BSR" id="contenido-carniceria-{{relArchivoLoop.id}}">
+		                                      {{relArchivoLoop.archivo.urlProv}}
+		                                </div>
+		                          </div>
+		                    </div>
+		              </div>
+		        </div>
+		        
+		        
+		        <style>
+		              .cont-archivos-real {
+		                    overflow-x: auto;
+		                    overflow-y: hidden;
+		                    border-left: solid 1px var(--verde);
+		                    border-right: solid 1px var(--verde);
+		                    border-bottom: solid 1px var(--verde);
+		              }
+		        
+		              .contenido-carniceria {
+		                    width: fit-content;
+		                    /* overflow: visible; */
+		              }
+		        
+		              .cont-archivos-real::-webkit-scrollbar {
+		                    width: 5px;
+		                    height: 5px;
+		                    /* width of the entire scrollbar */
+		              }
+		        
+		              .cont-archivos-real::-webkit-scrollbar-thumb {
+		                    border-radius: 50px;
+		                    overflow: hidden;
+		                    background-color: red;
+		              }
+		        
+		              .cont-archivos-real::-webkit-scrollbar-track {
+		        
+		                    background: lightgrey;
+		              }
+		        
+		        
+		              .item-archivo {
+		                    padding: 15px;
+		              }
+		        
+		              .img-archivo {
+		                    height: 60px;
+		                    width: 60px;
+		        
+		              }
+		        
+		              .nombre-archivo {
+		                    /* height: 25px; */
+		                    height: 50px;
+		                    text-align: center;
+		                    background-color: black;
+		                    color: white;
+		                    border-radius: 50px;
+		                    overflow-x: scroll;
+		                    white-space: nowrap;
+		                    width: 80px;
+		              }
+		        
+		              .nombre-archivo:hover {
+		                    animation-name: carniceria;
+		                    animation-duration: 4s;
+		              }
+		        </style>
+		        
+		        
+		    
+		                            </div>
+		    
+		    
+		                            <div ng-hide="true">
+		                                  {{invoiceSelected}}
+		                            </div>
+		                      </div>
+		    
+		                      <div class="modal-footer sin-padding">
+		    
+		                            <div class="col-12 flex sin-padding">
+		                                  <div class="col-6 sin-padding-left">
+		                                        <button class="btn btn-danger col-12">
+		                                              Retroceder
+		                                        </button>
+		                                  </div>
+		                                  <div class="col-6 sin-padding-right">
+		                                        <button class="btn btn-success  col-12">
+		                                              Avanzar
+		                                        </button>
+		                                  </div>
+		                            </div>
+		                            <!-- <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> -->
+		                      </div>
+		    
+		                </div>
+		          </div>
+		    </div>
+		    
+		    <style>
+		          .h-cambios-estado {
+		                background-color: var(--verde);
+		                color: white;
+		                font-size: 18px;
+		                padding: 8px;
+		          }
+		    
+		          .cont-importe {
+		                text-align: center;
+		          }
+		    </style>
+		
+		
+		
+		
+</body>
+<script>
+      app = angular.module('app', ['ngSanitize']);
+
+      // <input type="file" custom-on-change="changeUploadFile">
+      //     $scope.changeUploadFile = function (event)
+      //       {
+      //             var files = event.target.files;
+      //       };
+      app.directive('customOnChange', function ()
+      {
+            return {
+                  restrict: 'A',
+                  link: function (scope, element, attrs)
+                  {
+                        var onChangeHandler = scope.$eval(attrs.customOnChange);
+                        element.on('change', onChangeHandler);
+                        element.on('$destroy', function ()
+                        {
+                              element.off();
+                        });
+
+                  }
+            };
+      });
+      app.filter('myDate', function ($filter)
+      {
+            return function (strDate)
+            {
+                  strFecha = "";
+
+                  if (strDate == null)
+                  {
+                        strFecha = "";
+                  }
+
+                  fecha = new Date(strDate);
+
+                  strDiaSemana = "";
+                  switch (fecha.getDay())
+                  {
+                        case 1: strDiaSemana = "Lunes"; break;
+                        case 2: strDiaSemana = "Martes"; break;
+                        case 3: strDiaSemana = "Miercoles"; break;
+                        case 4: strDiaSemana = "Jueves"; break;
+                        case 5: strDiaSemana = "Viernes"; break;
+                        case 6: strDiaSemana = "Sabado"; break;
+                        case 0: strDiaSemana = "Domingo"; break;
+                  }
+                  strMes = ""
+
+                  switch (fecha.getMonth())
+                  {
+                        case 0: strMes = "Enero"; break;
+                        case 1: strMes = "Febrero"; break;
+                        case 2: strMes = "Marzo"; break;
+                        case 3: strMes = "Abril"; break;
+                        case 4: strMes = "Mayo"; break;
+                        case 5: strMes = "Junio"; break;
+                        case 6: strMes = "Julio"; break;
+                        case 7: strMes = "Agosto"; break;
+                        case 8: strMes = "Septiembre"; break;
+                        case 9: strMes = "Octubre"; break;
+                        case 10: strMes = "Noviembre"; break;
+                        case 11: strMes = "Diciembre"; break;
+                  }
+
+                  //        strYear = "20" + (fecha.getYear() - 100);
+                  strYear = fecha.getYear() + 1900;
+
+                  strFecha = strMes + " " + strYear;
+                  return strFecha;
+            };
+      });
+      app.filter('dateNico', function ($filter)
+      {
+            return function (strDate)
+            {
+                  strFecha = "";
+
+                  fecha = new Date(strDate);
+
+                  // 1 - DIA
+                  dia = fecha.getDay();
+                  if (dia < 10)
+                  {
+                        strDia = "0" + dia;
+                  }
+                  else
+                  {
+                        strDia = dia;
+                  }
+
+                  // 2 - MES
+                  mes = fecha.getMonth() + 1;
+                  if (mes < 10)
+                  {
+                        strMes = "0" + mes;
+                  }
+                  else
+                  {
+                        strMes = mes;
+                  }
+
+                  // 3 - AÑO:
+                  strYear = fecha.getYear() + 1900;
+
+                  // 4 - CONJUGACION DE LA FECHA:
+                  strFecha = strDia + "/" + strMes + "/" + strYear;
+
+                  return strFecha;
+            };
+      });
+      app.filter('dateNicoMesYear', function ($filter)
+      {
+            return function (strDate)
+            {
+                  strFecha = "";
+
+                  fecha = new Date(strDate);
+
+                  // 1 - DIA
+                  // dia = fecha.getDay();
+                  // if (dia < 10)
+                  // {
+                  //       strDia = "0" + dia;
+                  // }
+                  // else
+                  // {
+                  //       strDia = dia;
+                  // }
+
+                  // 2 - MES
+                  mes = fecha.getMonth() + 1;
+                  if (mes < 10)
+                  {
+                        strMes = "0" + mes;
+                  }
+                  else
+                  {
+                        strMes = mes;
+                  }
+
+                  // 3 - AÑO:
+                  strYear = fecha.getYear() + 1900;
+
+                  // 4 - CONJUGACION DE LA FECHA:
+                  strFecha = strMes + "/" + strYear;
+
+                  return strFecha;
+            };
+      });
+      app.filter('dateNicoHoraMin', function ($filter)
+      {
+            return function (strDate)
+            {
+                  strRta = "";
+
+                  fecha = new Date(strDate);
+
+                  // 1 - HOURS
+                  hours = fecha.getHours();
+                  if (hours < 10)
+                  {
+                        strHours = "0" + hours;
+                  }
+                  else
+                  {
+                        strHours = hours;
+                  }
+
+                  // 2 - MINUTES:
+                  minutes = fecha.getMinutes();
+                  if (minutes < 10)
+                  {
+                        strMinutes = "0" + minutes;
+                  }
+                  else
+                  {
+                        strMinutes = minutes;
+                  }
+
+                  // 4 - CONJUGACION DE LA FECHA:
+                  strRta = "(" + strHours + ":" + strMinutes + ")";
+
+                  return strRta;
+            };
+      });
+      app.filter('zero', function ($filter)
+      {
+            return function (numero)
+            {
+                  rta = "";
+
+
+                  if (numero < 10)
+                  {
+                        rta = "0" + numero;
+                  }
+                  else
+                  {
+                        rta = numero;
+                  }
+
+                  return rta;
+            };
+      });
+
+      app.controller('ctl', function ($scope)
+      {	      $scope.arrMenus = [
+	            { "nombre": "Mi perfil", "icono": "fa-solid fa-eye", "enlace": "" },
+	            { "nombre": "Mi perfil", "icono": "fa-solid fa-eye", "enlace": "" },
+	            { "nombre": "Mi perfil", "icono": "fa-solid fa-eye", "enlace": "" },
+	            { "nombre": "Mi perfil", "icono": "fa-solid fa-eye", "enlace": "" },
+	            { "nombre": "Mi perfil", "icono": "fa-solid fa-eye", "enlace": "" },
+	            { "nombre": "Mi perfil", "icono": "fa-solid fa-eye", "enlace": "" },
+	            { "nombre": "Mi perfil", "icono": "fa-solid fa-eye", "enlace": "" },
+	            { "nombre": "Mi perfil", "icono": "fa-solid fa-eye", "enlace": "" },
+	            { "nombre": "Mi perfil", "icono": "fa-solid fa-eye", "enlace": "" },
+	            { "nombre": "Mi perfil", "icono": "fa-solid fa-eye", "enlace": "" },
+	            { "nombre": "Mi perfil", "icono": "fa-solid fa-eye", "enlace": "" },
+	            { "nombre": "Mi perfil", "icono": "fa-solid fa-eye", "enlace": "" },
+	            { "nombre": "Mi perfil", "icono": "fa-solid fa-eye", "enlace": "" },
+	            { "nombre": "Mi perfil", "icono": "fa-solid fa-eye", "enlace": "" },
+	            { "nombre": "Mi perfil", "icono": "fa-solid fa-eye", "enlace": "" },
+	            { "nombre": "Mi perfil", "icono": "fa-solid fa-eye", "enlace": "" },
+	            { "nombre": "Mi perfil", "icono": "fa-solid fa-eye", "enlace": "" }
+	      ];
+	      $scope.openModalInvoice = function ()
+	      {
+	            $("#modal-upload-invoice").modal();
+	      }
+	
+	      // AL ABRIR EL MODAL:
+	      $('#img-invoice').on('click', function ()
+	      {
+	            console.log("CLICKEO");
+	            $('#input-upload-invoices').trigger('click');
+	      });
+	      $('#input-upload-invoices').on('change', function ()
+	      {
+	            console.log("CAMBIO");
+	            $scope.uploadFotoInvoice("formulario-upload-invoices");
+	      });
+	      $scope.uploadFotoInvoice = function ()
+	      {
+	
+	            formularioID = "formulario-upload-invoices";
+	            console.log("VOY A SUBIR ARCHIVO DEL FORMULARIO " + formularioID + " @ " + $scope.urlASubirCorrespondienteCarpeta);
+	            var formData = new FormData(document.getElementById(formularioID));
+	
+	            $.ajax({
+	                  url: $scope.urlWS + "upload/foto/",
+	                  headers:
+	                  {
+	                        "authorization": "Bearer " + $scope.token
+	                  },
+	                  async: false,
+	                  type: "post",
+	                  dataType: "html",
+	                  data: formData,
+	                  cache: false,
+	                  contentType: false,
+	                  processData: false,
+	                  xhr: function ()
+	                  {
+	                        var xhr = new window.XMLHttpRequest();
+	
+	                        //UPLOAD PROGRESS:
+	                        xhr.upload.addEventListener("progress", function (evt)
+	                        {
+	                              if (evt.lengthComputable) 
+	                              {
+	                                    var percentComplete = evt.loaded / evt.total;
+	
+	                                    porcentaje = Math.round(percentComplete * 100);
+	                                    console.log("PORCENTAJE UPLOAD: " + porcentaje + "%");
+	
+	                                    $("#porcentaje-carga-" + formularioID).html(porcentaje + "%");
+	                              }
+	                        }, false);
+	
+	                        //DOWNLOAD PROGRESS:
+	                        xhr.addEventListener("progress", function (evt)
+	                        {
+	                              if (evt.lengthComputable) 
+	                              {
+	                                    var percentComplete = evt.loaded / evt.total;
+	                                    console.log("PORCENTAJE DOWNLOAD: " + porcentaje + "%");
+	                              }
+	                        }, false);
+	
+	                        return xhr;
+	                  },
+	                  success: function (resultado, textStatus, jqXHR) 
+	                  {
+	                        console.log("respueta upload one: " + resultado);
+	                        // respuesta = JSON.parse(resultado);
+	                        $scope.upInvoice = JSON.parse(resultado);
+	
+	                        $scope.cargandoUPInvoices = false;
+	                        $scope.$evalAsync();
+	                  },
+	                  cache: false,
+	                  processData: false
+	            });
+	            $scope.cargandoUPInvoices = false;
+	            // $.ajax(
+	            //       {
+	            //             url: $scope.urlWS + "upload/foto/",
+	            //             type: post
+	            //             headers:
+	            //             {
+	            //                   "authorization": "Bearer " + $scope.token
+	            //             },
+	            //             data:
+	            //             {
+	
+	            //             },
+	            //             beforeSend: function (xhr) 
+	            //             {
+	            //                   $scope.cargandoUPInvoices = true;
+	            //             },
+	            //             success: function (resultado, textStatus, jqXHR) 
+	            //             {
+	            //                   $scope.upInvoice = resultado;
+	            //                   $scope.cargandoUPInvoices = false;
+	            //                   $scope.$evalAsync();
+	            //             }
+	
+	            //       });
+	      }
+	      $scope.uploadMany = function (formularioID)
+	      {
+	      }
+	      $scope.openModalInvoice2 = function (invoiceRecibida)
+	      {
+	            $scope.invoiceSelected = invoiceRecibida;
+	
+	            $scope.$evalAsync();
+	
+	            $("#modal-invoice2").modal();
+	
+	
+	            lastScroll = 0;
+	            function hoverCarniceria(idElement)
+	            {
+	                  // MOUSE ENTER:
+	                  console.log("HOVER CARNICERIA: [" + idElement + "]")
+	
+	
+	                  lastScroll += 50;
+	                  $("#" + idElement).animate({
+	                        scrollLeft: "+=50px"
+	                  }, "slow");
+	
+	                  if (hoverCarni)
+	                  {
+	                        setTimeout(function ()
+	                        {
+	                              // var maxScroll = $("#" + idElement).scrollLeft();
+	                              var cuantoScrolleo = parseInt($("#" + idElement).scrollLeft());
+	                              var anchoPadre = parseInt($("#" + idElement).width());
+	                              var anchoContenido = parseInt($("#contenido-" + idElement).width());
+	                              var anchoCalculado = parseInt(anchoContenido - anchoPadre);
+	                              // var anchoContenidoCarniceria = parseInt();
+	                              // console.log("ANCHO CONTENIDO CARNICERIA:" + anchoContenidoCarniceria);
+	                              var porcentajeScroll = parseInt((cuantoScrolleo * 100) / anchoCalculado);
+	                              console.log("HOVER : " + cuantoScrolleo + "px de " + anchoCalculado + "px = " + porcentajeScroll + "%");
+	                              if (porcentajeScroll < 100)
+	                              {
+	                                    hoverCarniceria(idElement);
+	                              }
+	                        }, 250);
+	
+	                  }
+	
+	            }
+	            hoverCarni = false;
+	            setTimeout(function ()
+	            {
+	                  $(".carniceria").hover(
+	                        function ()
+	                        {
+	                              // MOUSE ENTER:
+	                              idElement = this.id;
+	                              hoverCarni = true;
+	                              hoverCarniceria(idElement);
+	                        }
+	                        , function ()
+	                        {
+	                              idElement = this.id;
+	                              // console.log("LEAVE CARNI: " + idElement)
+	                              //MOUSE LEAVE:
+	                              hoverCarni = false;
+	                              lastScroll = 0;
+	
+	
+	                              setTimeout(function ()
+	                              {
+	                                    console.log("WAITING2");
+	                                    $("#" + idElement).animate({
+	                                          scrollLeft: "=0px"
+	                                    }, "slow");
+	                              }, 250);
+	
+	                              // $("#" + idElement).scrollLeft(0)
+	                              // console.log("MOUSE LEAVE CARNICERIA: [" + idElement + "]" + $("#" + idElement).scrollLeft());
+	                        });
+	            }, 500);
+	      }
+	      $scope.init = function ()
+	      {
+	            $scope.comprobarOperadorLogeado();
+	            $scope.findInvoices();
+	      }
+	      $scope.findInvoices = function ()
+	      {
+	            $scope.cargandoInvoices = false;
+	            $.ajax(
+	                  {
+	                        url: $scope.urlWS + "invoices/findMesYear",
+	                        headers:
+	                        {
+	                              "authorization": "Bearer " + $scope.token
+	                        },
+	                        data:
+	                        {
+	                              "mes": 9,
+	                              "year": 2023
+	                        },
+	                        beforeSend: function (xhr) 
+	                        {
+	                              $scope.cargandoInvoices = true;
+	                        },
+	                        success: function (resultado, textStatus, jqXHR) 
+	                        {
+	                              $scope.arrInvoices = resultado;
+	                              $scope.cargandoInvoices = false;
+	
+	                              //TODO: QUITAR:
+	                              $scope.openModalInvoice2($scope.arrInvoices[0]);
+	                              $scope.$evalAsync();
+	                        }
+	
+	                  });
+	      }
+	
+    
+    $scope.debugMode = false;
+    $scope.verbose = false;
+    
+    
+    $scope.MODO_LOCAL = true;
+    $scope.urlWS = "";
+    $scope.url_DEV = "http://192.168.0.107:8999/";
+    $scope.url_PROD = "https://wiz.viewdevs.com.ar/";
+    
+    $scope.year = new Date().getFullYear();
+    
+    if ($scope.MODO_LOCAL)
+    {
+          console.log("MODO DEV LOCAL");
+          $scope.urlWS = $scope.url_DEV;
+          $scope.$evalAsync();
+    }
+    else
+    {
+          console.log("MODO PROD");
+          $scope.urlWS = $scope.url_PROD;
+          $scope.$evalAsync();
+    }
+    
+    
+    
+    
+    
+    
+    $scope.ponerParametroEnURL = function(nombreParametro, valorParametro, reload)
+    {
+        console.log("ponerParametroEnURL");
+        
+        url = window.location.href;
+        console.log("URL:" + url);
+        
+        valorAnterior = $scope.dameValorDelParametroFromURL(nombreParametro);
+        posI = url.indexOf(nombreParametro + "=" );
+        subURL = url.substr(posI,url.length);
+        console.log("subURL:" + subURL);
+        posF = posI + subURL.indexOf("&");
+        posSignoPregunta = url.indexOf("?");
+        
+        if(posF == -1)
+        {
+            posF = url.length;
+        }
+        if(posF < posI)
+        {
+            posF = url.length;
+        }
+        posSignoPregunta = url.indexOf("?");
+        if(posSignoPregunta == -1)
+        {
+            url = url + "?";
+        }
+        
+        console.log("valor anterior: " + valorAnterior + " POSI =" + posI +  " | POSF = " + posF);
+        if( valorAnterior != -1 )
+        {
+            // YA TENGO EL PARAMETRO EN URL:
+            preUrl = url.substr(0,(posI-1));
+            postUrl = url.substring(posF, url.length);
+            url =  preUrl + postUrl;
+            console.log("preUrl (" + 0 + "," + (posI-1) + ") :" + preUrl);
+            console.log("postUrl (" + posF + "," + url.length + "):" + postUrl);
+            console.log("URL CORTADA: " + url);
+            
+            if(valorParametro != -1)
+            {
+                url += "&" + nombreParametro + "=" + valorParametro;
+            }
+        }
+        else
+        {
+            // TODAVIA NO TENGO ESE PARAMETRO EN URL:
+            if(valorParametro != -1)
+            {
+                url +=  "&" + nombreParametro + "=" + valorParametro;
+            }
+        }
+        
+        window.history.pushState("object or string", "Title", url);
+        if(reload)
+        {
+          $scope.scrollearSuaveA("carrusel");
+          
+          setTimeout(function()
+          {
+                location.reload();
+    
+          },1500)
+        }
+    }
+    $scope.dameValorDelParametroFromURL = function(nombreParametro)
+    {
+          var url_string = window.location.href;
+          var url = new URL(url_string);
+          var parametro = url.searchParams.get(nombreParametro);
+    
+          if(parametro == null || parametro.length == 0)
+          {
+                parametro = -1;
+          }
+          return parametro;
+    }
+    
+    $scope.openNewTab = function(direccion)
+    {
+          window.open(direccion,'_blank');
+    }
+    $scope.ir = function(direccion)
+    {
+          $scope.openNewTab(direccion);
+    }
+    $scope.redirect = function(direccion)
+    {
+          $scope.openNewTab(direccion);
+    }
+    $scope.redireccionamiento = function(direccion)
+    {
+          window.location.href=direccion;
+    }
+    $scope.redireccionamientoNewTab = function(direccion)
+    {
+          $scope.openNewTab(direccion);
+    }
+    $scope.redirectSameTab = function(direccion)
+    {
+          window.open(direccion);
+    }
+    $scope.endsWith = function(valorBuscado, cadena)
+    {
+          rta = false;
+    
+          str = "" + cadena;
+    
+          largoCadena = str.length;
+          largoValorBuscado = valorBuscado.length;
+    
+          posInicial = largoCadena - largoValorBuscado;
+          posFinal = largoCadena;
+          subStr = str.substring(posInicial , posFinal);
+    
+          if(JSON.stringify(subStr) === JSON.stringify(valorBuscado))
+          {
+                rta = true;
+          }
+    
+          console.log("(" + cadena + ").ENDWITH -> buscado: " + valorBuscado +" | encontrado : " + subStr +  " = " + rta);
+    
+          return rta;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    $scope.propsSummernote = {
+          height: 180,
+          fontSizes: 
+          [
+                '8', 
+                '9', 
+                '10',
+                '11',
+                '12',
+                '14',
+                '18',
+                '24',
+                '36',
+                '48'
+          ],
+          popover:
+          {
+                image: [],
+                link: [],
+                air: []
+          },
+          toolbar:
+          [
+                ['style', ['style']],
+                ['font', ['bold', 'italic', 'underline', 'clear']],
+                ['fontname', ['fontname']],
+                ['color', ['color']],
+                ['insert', ['link', 'picture', 'hr']],
+                ['view', ['fullscreen', 'codeview']]
+          ],
+    };
+    
+    
+    $scope.capitalize = function(cadena)
+    {
+        return cadena.charAt(0).toUpperCase() + cadena.slice(1);
+    }
+    
+    
+    //FUNCIONES DE LOGEO:
+    $scope.operadorLogeado = null;
+    
+    $scope.comprobarOperadorLogeado = function(ifNoneRedirectLogin)
+    {
+        logeado = false;
+        $scope.cargandoLogeado = true;
+        token = $scope.getJWT();
+        console.log("2 - COMPROBAR OPERADOR LOGEADO JWT : [" + token + "]");
+        
+        if(token != null && token != "null")
+        {
+            
+            $.ajax(
+                {
+                    url: $scope.urlWS +"/operador/dameOperadorLogeado",
+                    type:'POST',
+                    async: true,
+                    headers: 
+                {
+                    "Authorization":"Bearer " + token
+                },
+                beforeSend: function (xhr) 
+                {
+                    $scope.cargandoLogeado = true;
+                },
+                error: function (jqXHR, textStatus, errorThrown) 
+                {
+        //            window.location.href = $scope.urlLogin; 
+                    $scope.setJWT(null);
+                    $scope.redireccionamiento("index.html")
+                    // console.log("debo ir a login");
+                },
+                success: function (resultado, textStatus, jqXHR) 
+                {
+                    $scope.cargandoLogeado = false;
+                    $scope.$evalAsync();
+                    
+                    url = window.location.href;
+                    console.log("OPERADOR LOGEADO OK: " + JSON.stringify(resultado) + " -> URL: " + url );
+                    if(resultado != null && resultado != "undefined")
+                    {
+                        $scope.usrLogeado = resultado;
+                        $scope.operadorLogeado = resultado;
+                        logeado = resultado;
+                        $scope.$evalAsync();
+    
+                        maxLargoURL = url.length;
+                        lastSimbol = url.substring( (maxLargoURL - 1) , maxLargoURL);
+                        console.log("url:" + url);
+    
+                        if(url.indexOf("login.html") > -1 || url.indexOf("index.html") > -1 || lastSimbol == "/")
+                        {
+                            console.log("DEBO REDIRECCIONAR A HOME");
+                            $scope.redireccionamiento("home.html")
+                        }
+                    }
+                }
+            });
+        }
+        else
+        {
+            $scope.usrLogeado = null;
+            $scope.operadorLogeado = null;
+            $scope.$evalAsync();
+    
+            console.log("3 - DEBO LOGEARME PARA TENER UN TOKEN : [" + token + "]");
+    
+            if(ifNoneRedirectLogin)
+            {
+                console.log("debo ir a login  por que no tengo token");
+    
+                $scope.redireccionamiento('index.html')
+                //TODO:$scope.redireccionamiento('login.html')
+            }
+        }
+        return logeado;
+    }
+    $scope.getJWT = function ()
+    {
+        $scope.jwt = localStorage.getItem('jwtToken');
+        $scope.token = localStorage.getItem('jwtToken');
+        console.log("1 - GETTING JWT FROM LOCALSTORAGE : [" + $scope.token + "] -> OP : "+ $scope.operadorLogeado );;
+        
+        if($scope.jwt == null || $scope.jwt == "null" || $scope.token == null)
+        {
+            url = $scope.getLastSlashURL();
+            $scope.operadorLogeado = null;
+    
+            if(url != "index.html")
+            {
+                console.log("DEBO REDIRECCIONAR A INDEX!");
+                $scope.redireccionamiento("index.html")
+            }
+        }
+        $scope.$evalAsync();
+    
+        return $scope.jwt;
+    }
+    $scope.setJWT = function (valor)
+    {
+        console.log("SETEANDO JWT [LOCAL - STORAGE]:" + valor);
+        localStorage.setItem('jwtToken', valor);
+        $scope.jwt = valor
+        $scope.token = valor;
+        $scope.$evalAsync();
+    
+    
+        $scope.comprobarOperadorLogeado();
+    }
+    $scope.logearse = function ()
+    {
+        console.log("logearse:" + $scope.urlWS);
+        $.ajax(
+                {
+                    url: $scope.urlWS + "operador/logearse",
+                    type: 'POST',
+                    data:
+                    {
+                            "email": $scope.email,
+                            "pass": $scope.pass,
+                    },
+                    beforeSend: function (xhr) 
+                    {
+                            $scope.ingresando = true;
+                    },
+                    error: function (jqXHR, textStatus, errorThrown)
+                    {
+                            $scope.ingresando = false;
+                            $scope.$evalAsync();
+                    
+                            strError = "ERROR AL LOGEARSE : ";
+                            if(jqXHR.status == 0)
+                            {
+                                strError += "Timeout (" + jqXHR.status  + ")";
+                            }
+    
+                            alert(strError)
+                            //$scope.snack('ERROR AL INGRESAR!')
+                    },
+                    success: function (resultado, textStatus, jqXHR) 
+                    {
+                        console.log("RES LOGEARSE: JWT :  " + resultado);
+                        $scope.setJWT(resultado);
+    
+                        if (resultado != null)
+                        {
+                            
+                        }
+                        else
+                        {
+                            $scope.ingresando = false;
+                            $scope.$evalAsync();
+                        }
+                    }
+    
+                });
+    
+    }
+        
+    $scope.exit = function()
+    {
+        $scope.setJWT(null);
+        //localStorage.setItem('jwtToken', null);
+        $scope.comprobarOperadorLogeado(true);
+    }
+    
+    
+    $scope.getLastSlashURL = function()
+    {
+        url = window.location.href;
+        rta = url;
+        posLastSlash = url.lastIndexOf("/");   
+    
+        if(posLastSlash != -1)
+        {
+            lastPart = url.substring( (posLastSlash + 1) , url.length);
+            rta = lastPart;
+            console.log("URL ACTUAL: " + rta );
+            // console.log("URL (" + posLastSlash +") : " + url + " -> "+  rta );
+        }
+        return rta;
+    }
+    
+    
+    $(document).ready(function()
+    {
+          // 1 - LISTENER DE RESIZE EVENT:
+          $scope.xl = false;
+          $scope.lg = false;
+          $scope.md = false;
+          $scope.sm = false;
+          $scope.xs = true;
+    
+          console.log("JQuery ready");
+          $scope.resize();
+    
+          $(window).on('resize', function()
+          {
+                $scope.resize();
+          });
+    
+          document.addEventListener('scroll', function(e)
+          {
+                var top  = window.pageYOffset || document.documentElement.scrollTop;
+                // console.log("SCROLEANDOsss122.."+ JSON.stringify(top))
+    
+                tengoClasePuesta = $("#cont-menu").hasClass("transparency-menu")
+    
+                if(top > 550)
+                {
+                      
+                      if( !tengoClasePuesta )
+                      {
+                            console.log("AGREGANDO TRANSPARENCY A MENU");
+                            $("#cont-menu").addClass("transparency-menu");
+                      }
+                }
+                else
+                {
+                      if( tengoClasePuesta )
+                      {
+                            console.log("QUITANDO TRANSPARENCY A MENU");
+                            $("#cont-menu").removeClass("transparency-menu");
+                      }
+                }
+          }, true);
+    });   
+    
+    $scope.SIZEANT = 0;
+    $scope.SIZEX = "LG";
+    $scope.resize = function()
+    {
+          var win = $(window); //this = window
+          ancho = win.innerWidth();
+          // console.log("RESIZE: " + ancho);
+          
+          if(ancho < $scope.anchoMinimoWEB)
+          {
+                console.log("ANCHO MINIMO :" + $scope.anchoMinimoWEB + " | " + ancho);
+          }
+          
+          if (ancho > 1200) 
+          {
+                $scope.xl = true;
+                $scope.lg = false;
+                $scope.md = false;
+                $scope.sm = false;
+                $scope.xs = false;
+                $scope.SIZEANT = $scope.SIZEX;
+                $scope.SIZEX = "XL";
+    
+                $scope.$evalAsync();
+    
+                if($scope.verbose)
+                {
+                      console.log("ENTRE XL! " + $scope.SIZEX);
+                }
+          }
+          else if(ancho < 1200 && ancho > 992)
+          {
+                $scope.xl = false;
+                $scope.lg = true;
+                $scope.md = false;
+                $scope.sm = false;
+                $scope.xs = false;
+                $scope.SIZEANT = $scope.SIZEX;
+                $scope.SIZEX = "LG";
+    
+                $scope.$evalAsync();
+    
+                if($scope.verbose)
+                {
+                      console.log("ENTRE LG! " + $scope.SIZEX);
+                }
+          }
+          else if(ancho < 992 && ancho > 768)
+          {
+                $scope.xl = false;
+                $scope.lg = false;
+                $scope.md = true;
+                $scope.sm = false;
+                $scope.xs = false;
+                $scope.SIZEANT = $scope.SIZEX;
+                $scope.SIZEX = "MD";
+    
+                $scope.$evalAsync();
+    
+                if($scope.verbose)
+                {
+                      console.log("ENTRE MD! "  + $scope.SIZEX);
+                }
+          }
+          else if(ancho < 768 && ancho > 576)
+          {
+                $scope.xl = false;
+                $scope.lg = false;
+                $scope.md = false;
+                $scope.sm = true;
+                $scope.xs = false;
+                $scope.SIZEANT = $scope.SIZEX;
+                $scope.SIZEX = "SM";
+    
+                $scope.$evalAsync();
+    
+                if($scope.verbose)
+                {
+                      console.log("ENTRE SM! "  + $scope.SIZEX);
+                }
+          }
+          else if ( ancho < 576)
+          {
+                $scope.xl = false;
+                $scope.lg = false;
+                $scope.md = false;
+                $scope.sm = false;
+                $scope.xs = true;
+                $scope.SIZEANT = $scope.SIZEX;
+                $scope.SIZEX = "XS";
+    
+                $scope.$evalAsync();
+    
+                if($scope.verbose)
+                {
+                      console.log("ENTRE XS! " + $scope.SIZEX);
+                }
+          }
+          
+          
+          if($scope.xs || $scope.sm || $scope.md)
+          {
+                $scope.mostrarBusqueda = false;
+          }
+                
+          $scope.ancho = ancho;
+          $scope.$evalAsync();
+    
+          if($scope.SIZEANT != $scope.SIZEX)
+          {
+                console.log("RESIZE ancho:" + ancho + " | TAMANO: " + $scope.SIZEX );
+          }
+          
+    }
+    
+    
+    $scope.refresca = function()
+    {
+        var html = $scope.getHTML();
+        console.log("html:" + html);
+    }
+    $scope.setearHTML = function(idSummernote, texto)
+    {
+        // VERIFICA QUE TENGA UN HASHTAG ADELANTE SINO LO AGREGA:
+        if(!idSummernote.startsWith("#"))
+        {
+            idSummernote = "#" + idSummernote;
+        }
+    
+        console.log("SETEANDO SUMMERNOTE: " + idSummernote + " -> " + texto);
+    
+        if(texto != null)
+        {
+            console.log("seteando: " + texto);
+    
+            $(idSummernote).summernote('code', texto);
+            // $('#summernote').summernote('code', texto);
+        }
+        else
+        {
+            $(idSummernote).summernote('code', texto);
+            // $('#summernote').summernote('code', "");
+        }
+    }
+    $scope.getHTML = function(idSummernote)
+    {
+            // VERIFICA QUE TENGA UN HASHTAG ADELANTE SINO LO AGREGA:
+        if(!idSummernote.startsWith("#"))
+        {
+            idSummernote = "#" + idSummernote;
+        }
+    
+        var markupStr = $(idSummernote).summernote('code');
+    
+        // var markupStr = $('#summernote').summernote('code');
+        //console.log("VALOR: " + markupStr);
+        
+        return markupStr;
+    }})
+;
+</script>
+<link rel="stylesheet" href="../plantillas/comun.css">
+</html>

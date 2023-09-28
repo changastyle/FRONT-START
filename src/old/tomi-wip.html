@@ -1,0 +1,51 @@
+<h3>Tomy</h3>
+
+
+<h3>Listado de facturas</h3>
+
+<button class="btn btn-success" ng-click="traerFacturas()">
+      Traer Facturas
+</button>
+
+<div class="bg-white">
+      {{arrFacturas}}
+</div>
+
+<script inyectado>
+      $scope.init = function ()
+      {
+
+            $scope.getJWT();
+
+      }
+      $scope.traerFacturas = function ()
+      {
+            url = "http://localhost:8999/invoices/findMesYear?mes=5&year=2023";
+
+
+
+            $.ajax(
+                  {
+                        url: url,
+                        headers:
+                        {
+                              "authorization": "Bearer " + $scope.token
+                        },
+                        data:
+                        {
+
+                        },
+                        beforeSend: function (xhr) 
+                        {
+                              $scope.cargando = true;
+                        },
+                        success: function (resultado, textStatus, jqXHR) 
+                        {
+                              $scope.arrFacturas = resultado;
+                              $scope.cargando = false;
+                              $scope.$evalAsync();
+                        }
+
+                  });
+      }
+</script>

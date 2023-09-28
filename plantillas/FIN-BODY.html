@@ -23,6 +23,188 @@
                   }
             };
       });
+      app.filter('myDate', function ($filter)
+      {
+            return function (strDate)
+            {
+                  strFecha = "";
+
+                  if (strDate == null)
+                  {
+                        strFecha = "";
+                  }
+
+                  fecha = new Date(strDate);
+
+                  strDiaSemana = "";
+                  switch (fecha.getDay())
+                  {
+                        case 1: strDiaSemana = "Lunes"; break;
+                        case 2: strDiaSemana = "Martes"; break;
+                        case 3: strDiaSemana = "Miercoles"; break;
+                        case 4: strDiaSemana = "Jueves"; break;
+                        case 5: strDiaSemana = "Viernes"; break;
+                        case 6: strDiaSemana = "Sabado"; break;
+                        case 0: strDiaSemana = "Domingo"; break;
+                  }
+                  strMes = ""
+
+                  switch (fecha.getMonth())
+                  {
+                        case 0: strMes = "Enero"; break;
+                        case 1: strMes = "Febrero"; break;
+                        case 2: strMes = "Marzo"; break;
+                        case 3: strMes = "Abril"; break;
+                        case 4: strMes = "Mayo"; break;
+                        case 5: strMes = "Junio"; break;
+                        case 6: strMes = "Julio"; break;
+                        case 7: strMes = "Agosto"; break;
+                        case 8: strMes = "Septiembre"; break;
+                        case 9: strMes = "Octubre"; break;
+                        case 10: strMes = "Noviembre"; break;
+                        case 11: strMes = "Diciembre"; break;
+                  }
+
+                  //        strYear = "20" + (fecha.getYear() - 100);
+                  strYear = fecha.getYear() + 1900;
+
+                  strFecha = strMes + " " + strYear;
+                  return strFecha;
+            };
+      });
+      app.filter('dateNico', function ($filter)
+      {
+            return function (strDate)
+            {
+                  strFecha = "";
+
+                  fecha = new Date(strDate);
+
+                  // 1 - DIA
+                  dia = fecha.getDay();
+                  if (dia < 10)
+                  {
+                        strDia = "0" + dia;
+                  }
+                  else
+                  {
+                        strDia = dia;
+                  }
+
+                  // 2 - MES
+                  mes = fecha.getMonth() + 1;
+                  if (mes < 10)
+                  {
+                        strMes = "0" + mes;
+                  }
+                  else
+                  {
+                        strMes = mes;
+                  }
+
+                  // 3 - AÑO:
+                  strYear = fecha.getYear() + 1900;
+
+                  // 4 - CONJUGACION DE LA FECHA:
+                  strFecha = strDia + "/" + strMes + "/" + strYear;
+
+                  return strFecha;
+            };
+      });
+      app.filter('dateNicoMesYear', function ($filter)
+      {
+            return function (strDate)
+            {
+                  strFecha = "";
+
+                  fecha = new Date(strDate);
+
+                  // 1 - DIA
+                  // dia = fecha.getDay();
+                  // if (dia < 10)
+                  // {
+                  //       strDia = "0" + dia;
+                  // }
+                  // else
+                  // {
+                  //       strDia = dia;
+                  // }
+
+                  // 2 - MES
+                  mes = fecha.getMonth() + 1;
+                  if (mes < 10)
+                  {
+                        strMes = "0" + mes;
+                  }
+                  else
+                  {
+                        strMes = mes;
+                  }
+
+                  // 3 - AÑO:
+                  strYear = fecha.getYear() + 1900;
+
+                  // 4 - CONJUGACION DE LA FECHA:
+                  strFecha = strMes + "/" + strYear;
+
+                  return strFecha;
+            };
+      });
+      app.filter('dateNicoHoraMin', function ($filter)
+      {
+            return function (strDate)
+            {
+                  strRta = "";
+
+                  fecha = new Date(strDate);
+
+                  // 1 - HOURS
+                  hours = fecha.getHours();
+                  if (hours < 10)
+                  {
+                        strHours = "0" + hours;
+                  }
+                  else
+                  {
+                        strHours = hours;
+                  }
+
+                  // 2 - MINUTES:
+                  minutes = fecha.getMinutes();
+                  if (minutes < 10)
+                  {
+                        strMinutes = "0" + minutes;
+                  }
+                  else
+                  {
+                        strMinutes = minutes;
+                  }
+
+                  // 4 - CONJUGACION DE LA FECHA:
+                  strRta = "(" + strHours + ":" + strMinutes + ")";
+
+                  return strRta;
+            };
+      });
+      app.filter('zero', function ($filter)
+      {
+            return function (numero)
+            {
+                  rta = "";
+
+
+                  if (numero < 10)
+                  {
+                        rta = "0" + numero;
+                  }
+                  else
+                  {
+                        rta = numero;
+                  }
+
+                  return rta;
+            };
+      });
 
       app.controller('ctl', function ($scope)
       {

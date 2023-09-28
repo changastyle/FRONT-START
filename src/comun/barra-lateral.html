@@ -1,0 +1,115 @@
+<div class="barra-lateral col-12  sin-padding">
+
+      <!-- 1 - COLOR BARRA LATERAL: -->
+      <div class="cont-color-barra-lateral col-12 pt-25">
+
+            <!-- 2 - INFO OPERADOR LOGEADO LATERAL: -->
+            <div class="cont-info-operador-logeado-lateral flex bsb">
+
+                  <!-- 3 - IMG OPERADOR LOGEADO: -->
+                  <div class="img-lateral-operador-logeado img-bg"
+                        style="background-image: url('{{operadorLogeado.fotoPerfil.fullFoto}}');">
+                  </div>
+
+                  <!-- 4 - NOMBRE OPERADOR LOGEADO LATERAL: -->
+                  <div class="nombre-operador-logeado-lateral white flex-center-v pl-15">
+                        {{operadorLogeado.nombre}}
+                        {{operadorLogeado.apellido}}
+                  </div>
+            </div>
+      </div>
+
+      <!-- 2 - BARRA MENUS LATERAL:-->
+      <div class="cont-menus-lateral bsr pt-30 pb-30">
+
+            <div class="menu-item-lateral pointer" ng-repeat="menuLoop in arrMenus"
+                  ng-click="redirect(menuLoop.enlace)">
+                  <span class="cont-icono-menu-lateral pr-2 " style="width: 30px;">
+                        <i class="{{menuLoop.icono}}"></i>
+                  </span>
+                  {{menuLoop.nombre}}
+                  {{menuLoop.enlace}}
+            </div>
+
+      </div>
+
+      <!-- 3 - BOTON SALID LATERAL:-->
+      <div class="cont-salir-lateral flex-center p-2">
+            <button class="btn btn-salir" ng-click="exit()">
+                  Cerrar Sesion
+            </button>
+      </div>
+</div>
+
+<style>
+      .barra-lateral {
+            height: 100vh;
+            /* height: calc(100vh - 80px); */
+            background-color: white;
+      }
+
+      .cont-color-barra-lateral {
+            height: 250px;
+            background-color: var(--red);
+      }
+
+      .cont-menus-lateral {
+            height: calc(100% - 300px);
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding-left: 50px
+      }
+
+      .cont-menus-lateral::-webkit-scrollbar-track {
+            background: white;
+      }
+
+      .cont-menus-lateral::-webkit-scrollbar-thumb {
+            background-color: red;
+            border-radius: 6px;
+            border: 3px solid red;
+      }
+
+      .cont-salir-lateral {
+            height: 50px;
+      }
+
+      .img-lateral-operador-logeado {
+            height: 50px;
+            width: 50px;
+            padding-right: 15px;
+      }
+
+      .btn-salir {
+            background-color: grey;
+            border-radius: 20px;
+            color: white;
+      }
+
+      .menu-item-lateral {
+            padding-top: 20px;
+            ;
+      }
+</style>
+
+<script inyectado>
+      $scope.arrMenus = [
+            { "nombre": "Mi perfil", "icono": "fa-solid fa-eye", "enlace": "" },
+            { "nombre": "Mi perfil", "icono": "fa-solid fa-eye", "enlace": "" },
+            { "nombre": "Mi perfil", "icono": "fa-solid fa-eye", "enlace": "" },
+            { "nombre": "Mi perfil", "icono": "fa-solid fa-eye", "enlace": "" },
+            { "nombre": "Mi perfil", "icono": "fa-solid fa-eye", "enlace": "" },
+            { "nombre": "Mi perfil", "icono": "fa-solid fa-eye", "enlace": "" },
+            { "nombre": "Mi perfil", "icono": "fa-solid fa-eye", "enlace": "" },
+            { "nombre": "Mi perfil", "icono": "fa-solid fa-eye", "enlace": "" },
+            { "nombre": "Mi perfil", "icono": "fa-solid fa-eye", "enlace": "" },
+            { "nombre": "Mi perfil", "icono": "fa-solid fa-eye", "enlace": "" },
+            { "nombre": "Mi perfil", "icono": "fa-solid fa-eye", "enlace": "" },
+            { "nombre": "Mi perfil", "icono": "fa-solid fa-eye", "enlace": "" },
+            { "nombre": "Mi perfil", "icono": "fa-solid fa-eye", "enlace": "" },
+            { "nombre": "Mi perfil", "icono": "fa-solid fa-eye", "enlace": "" },
+            { "nombre": "Mi perfil", "icono": "fa-solid fa-eye", "enlace": "" },
+            { "nombre": "Mi perfil", "icono": "fa-solid fa-eye", "enlace": "" },
+            { "nombre": "Mi perfil", "icono": "fa-solid fa-eye", "enlace": "" }
+      ];
+</script>

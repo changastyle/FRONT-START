@@ -1,81 +1,26 @@
-<h3>Payments Front</h3>
-{{arrInvoices}}
-
-<br>
-ARR PRODUCTOS: {{arrProductos}}
-
-<include src="comun/cuadro-login.html"></include>
-
-<select class="form-control" ng-model="productoSelected"
-      ng-options="producto as producto.nombre for producto in arrProductos track by producto.nombre">
-</select>
-
+<div class="cont-index col-12 sin-padding flex">
+      <div class="col-12 col-sm-4 col-lg-6 index-izq partes-index bg-black bg-login 	d-none d-sm-block">
+      </div>
+      <div class="col-12 col-sm-8 col-lg-6 index-der flex-center flex-center-v  partes-index  bg-white">
+            <include src="partes-index/cuadro-login.html"></include>
+      </div>
+</div>
 <style>
+      .partes-index {
+            min-height: 100vh;
+      }
+
+      .bg-login {
+            background-image: url('../res/img/login-bg.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: top center;
+      }
 </style>
 <script inyectado>
       $scope.init = function ()
       {
-            console.log("INIT");
-            $scope.getJWT();
+            console.log("INIT INDEX");
             $scope.comprobarOperadorLogeado();
-            $scope.findInvoices();
-            $scope.findProductos();
       }
-
-      $scope.findInvoices = function ()
-      {
-            $scope.cargandoInvoices = false;
-            $.ajax(
-                  {
-                        url: $scope.urlWS + "invoices/find",
-                        headers:
-                        {
-                              "authorization": "Bearer " + $scope.token
-                        },
-                        data:
-                        {
-
-                        },
-                        beforeSend: function (xhr) 
-                        {
-                              $scope.cargandoInvoices = true;
-                        },
-                        success: function (resultado, textStatus, jqXHR) 
-                        {
-                              $scope.arrInvoices = resultado;
-                              $scope.cargandoInvoices = false;
-                              $scope.$evalAsync();
-                        }
-
-                  });
-      }
-      $scope.findProductos = function ()
-      {
-            $scope.cargandoProductos = false;
-            $.ajax(
-                  {
-                        url: $scope.urlWS + "producto/",
-                        headers:
-                        {
-                              "authorization": "Bearer " + $scope.token
-                        },
-                        data:
-                        {
-
-                        },
-                        beforeSend: function (xhr) 
-                        {
-                              $scope.cargandoProductos = true;
-                        },
-                        success: function (resultado, textStatus, jqXHR) 
-                        {
-                              $scope.arrProductos = resultado;
-                              $scope.productoSelected = $scope.arrProductos[0];
-                              $scope.cargandoProductos = false;
-                              $scope.$evalAsync();
-                        }
-
-                  });
-      }
-
 </script>

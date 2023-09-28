@@ -1,0 +1,190 @@
+<div class="modal" id="modal-invoice2">
+      <div class="modal-dialog">
+            <div class="modal-content">
+                  <!-- Modal Header -->
+                  <div class="modal-header">
+                        <h4 class="modal-title">
+                              <span class="bold">
+                                    Factura {{invoiceSelected.producto.nombre}} - {{invoiceSelected.cliente.nombre}}
+                              </span>
+                              <!-- {{invoiceSelected.fechaCreacion | dateNicoMesYear}} -->
+                              {{"("}}{{invoiceSelected.mesPeriodo | zero}}/{{invoiceSelected.yearPeriodo}}{{")"}}
+                        </h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+
+                  <!-- Modal body -->
+                  <div class="modal-body">
+
+                        <div class="flex col-12 sin-padding">
+
+                              <!-- IMPORTE: -->
+                              <div class="cont-importe col-6 ">
+
+                                    <div>
+                                          Importe:
+                                    </div>
+                                    <span class="bold font-24">
+                                          {{"$" + invoiceSelected.importe}}
+                                    </span>
+                              </div>
+
+                              <!-- PERIODO: -->
+                              <div class="cont-periodo col-6 center">
+
+                                    <div>
+                                          Periodo:
+                                    </div>
+                                    <span class="bold font-24">
+                                          {{invoiceSelected.mesPeriodo | zero}}/{{invoiceSelected.yearPeriodo}}
+                                    </span>
+                              </div>
+
+                        </div>
+
+
+                        <!-- CAMBIOS DE ESTADO: -->
+                        <div class="cont-cambios-estado mt-3 mb-3 ">
+
+                              <h3 class="h-cambios-estado flex-center  brt-20 mb-0">
+                                    Cambios de Estado {{"(" + invoiceSelected.arrCambiosEstado.length +")"}}
+                              </h3>
+                              <!-- <span class="bold"> -->
+                              <!-- {{invoiceSelected.arrCambiosEstado}} -->
+                              <!-- </span> -->
+
+                              <include src="../modal-upload-invoce/tabla-cambios-estado.html"></include>
+
+                        </div>
+
+                        <!-- LISTADO ARCHIVOS: -->
+                        <div class="cont-archivos mt-3 mb-3">
+
+                              <h3 class="h-cambios-estado flex-center brt-20 mb-0">
+                                    Archivos {{"(" + invoiceSelected.arrRelsArchivos.length +")"}}
+                              </h3>
+                              <!-- <span class="bold"> -->
+                              <!-- {{invoiceSelected.arrCambiosEstado}} -->
+                              <!-- </span> -->
+
+                              <include src="../modal-upload-invoce/cuadro-archivos.html"></include>
+
+                        </div>
+
+
+                        <div ng-hide="true">
+                              {{invoiceSelected}}
+                        </div>
+                  </div>
+
+                  <div class="modal-footer sin-padding">
+
+                        <div class="col-12 flex sin-padding">
+                              <div class="col-6 sin-padding-left">
+                                    <button class="btn btn-danger col-12">
+                                          Retroceder
+                                    </button>
+                              </div>
+                              <div class="col-6 sin-padding-right">
+                                    <button class="btn btn-success  col-12">
+                                          Avanzar
+                                    </button>
+                              </div>
+                        </div>
+                        <!-- <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> -->
+                  </div>
+
+            </div>
+      </div>
+</div>
+
+<style>
+      .h-cambios-estado {
+            background-color: var(--verde);
+            color: white;
+            font-size: 18px;
+            padding: 8px;
+      }
+
+      .cont-importe {
+            text-align: center;
+      }
+</style>
+<script inyectado>
+      $scope.openModalInvoice2 = function (invoiceRecibida)
+      {
+            $scope.invoiceSelected = invoiceRecibida;
+
+            $scope.$evalAsync();
+
+            $("#modal-invoice2").modal();
+
+
+            lastScroll = 0;
+            function hoverCarniceria(idElement)
+            {
+                  // MOUSE ENTER:
+                  console.log("HOVER CARNICERIA: [" + idElement + "]")
+
+
+                  lastScroll += 50;
+                  $("#" + idElement).animate({
+                        scrollLeft: "+=50px"
+                  }, "slow");
+
+                  if (hoverCarni)
+                  {
+                        setTimeout(function ()
+                        {
+                              // var maxScroll = $("#" + idElement).scrollLeft();
+                              var cuantoScrolleo = parseInt($("#" + idElement).scrollLeft());
+                              var anchoPadre = parseInt($("#" + idElement).width());
+                              var anchoContenido = parseInt($("#contenido-" + idElement).width());
+                              var anchoCalculado = parseInt(anchoContenido - anchoPadre);
+                              // var anchoContenidoCarniceria = parseInt();
+                              // console.log("ANCHO CONTENIDO CARNICERIA:" + anchoContenidoCarniceria);
+                              var porcentajeScroll = parseInt((cuantoScrolleo * 100) / anchoCalculado);
+                              console.log("HOVER : " + cuantoScrolleo + "px de " + anchoCalculado + "px = " + porcentajeScroll + "%");
+                              if (porcentajeScroll < 100)
+                              {
+                                    hoverCarniceria(idElement);
+                              }
+                        }, 250);
+
+                  }
+
+            }
+            hoverCarni = false;
+            setTimeout(function ()
+            {
+                  $(".carniceria").hover(
+                        function ()
+                        {
+                              // MOUSE ENTER:
+                              idElement = this.id;
+                              hoverCarni = true;
+                              hoverCarniceria(idElement);
+                        }
+                        , function ()
+                        {
+                              idElement = this.id;
+                              // console.log("LEAVE CARNI: " + idElement)
+                              //MOUSE LEAVE:
+                              hoverCarni = false;
+                              lastScroll = 0;
+
+
+                              setTimeout(function ()
+                              {
+                                    console.log("WAITING2");
+                                    $("#" + idElement).animate({
+                                          scrollLeft: "=0px"
+                                    }, "slow");
+                              }, 250);
+
+                              // $("#" + idElement).scrollLeft(0)
+                              // console.log("MOUSE LEAVE CARNICERIA: [" + idElement + "]" + $("#" + idElement).scrollLeft());
+                        });
+            }, 500);
+      }
+</script>

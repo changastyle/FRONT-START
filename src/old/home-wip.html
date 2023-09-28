@@ -1,0 +1,75 @@
+<include src="comun/formato-comun.html"></include>
+
+<div class="col-12 sin-padding">
+      <include src="comun/barra-menu.html"></include>
+      <div class="col-8 offset-2" style="padding-top: 25px">
+            <include src="partes-listado-pagos/botonera-fecha.html"></include>
+
+            <include src="partes-listado-pagos/debug.html"></include>
+            <include src="partes-listado-pagos/history.html"></include>
+      </div>
+</div>
+
+<div class="col-12 bsr flex-center">
+      <div class="col-8">
+            <button class="btn btn-success" ng-click="findInvoices()">
+                  FIND INVOICES
+            </button>
+            <button class="btn btn-success" ng-click="openModalInvoice()">
+                  OPEN MODAL INVOICES
+            </button>
+      </div>
+</div>
+
+<include src="modal-upload-invoce/modal-upload-invoice.html"></include>
+
+<div class="col-12 debug flex-center">
+
+      <div class="col-8 bsr overflow-hidden">
+
+            jwt:{{token}}
+            <BR>
+            AUMENTO: {{aumento}}
+      </div>
+</div>
+<include src="comun/fin-formato-comun.html"></include>
+
+<script inyectado>
+      $scope.init = function ()
+      {
+            // $scope.getJWT();
+            // $scope.comprobarOperadorLogeado();
+            // $scope.findInvoices();
+      }
+
+      $scope.aumento = 0;
+      $scope.findInvoices = function ()
+      {
+            $scope.cargandoInvoices = false;
+            $.ajax(
+                  {
+                        url: $scope.urlWS + "invoices/findMesYear",
+                        headers:
+                        {
+                              "authorization": "Bearer " + $scope.token
+                        },
+                        data:
+                        {
+                              "mes": 9,
+                              "year": 2023
+                        },
+                        beforeSend: function (xhr) 
+                        {
+                              $scope.cargandoInvoices = true;
+                        },
+                        success: function (resultado, textStatus, jqXHR) 
+                        {
+                              $scope.arrInvoices = resultado;
+                              $scope.cargandoInvoices = false;
+                              $scope.$evalAsync();
+                        }
+
+                  });
+      }
+
+</script>

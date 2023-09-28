@@ -1,0 +1,27 @@
+<div class="real-cont-opciones-user col-3" ng-show="mostarOpciones">
+
+</div>
+
+
+<style>
+      .real-cont-opciones-user {
+            min-height: 250px;
+            background-color: black;
+            /* border-radius: 20px; */
+            position: absolute;
+            top: 65px;
+            right: 0px;
+            z-index: 999;
+      }
+</style>
+
+<script inyectado>
+      $scope.mostarOpciones = false;
+
+      $scope.cambiarEstadoMostrarOpciones = function ()
+      {
+            console.log("cambiando estado mostrar opciones");
+            $scope.mostarOpciones = !$scope.mostarOpciones;
+            $scope.$evalAsync();
+      }
+</script>

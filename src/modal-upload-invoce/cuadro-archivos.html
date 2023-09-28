@@ -1,0 +1,87 @@
+<div class="cont-archivos-real flex">
+
+      <!-- {{encima}} -->
+      <div class="item-archivo bsr" ng-repeat="relArchivoLoop in invoiceSelected.arrRelsArchivos">
+            <div class="centrador-img-archivo flex-center">
+                  <div class="img-archivo bsr img-bg bg-img"
+                        style="background-image: url('{{relArchivoLoop.archivo.fullFoto}}');">
+                  </div>
+            </div>
+            <div class="centrador-nombre-archivo flex-center pt-3">
+                  <!-- id="nombre-archivo-{{relArchivoLoop.id}}"
+                                          ng-mouseover="hoverNombreArchivo(relArchivoLoop.id)"
+                                          ng-mouseleave="resethoverNombreArchivo(relArchivoLoop.id)" -->
+                  <div class="carniceria nombre-archivo pointer pl-2 pr-2" id="carniceria-{{relArchivoLoop.id}}">
+
+                        <div class="contenido-carniceria BSR" id="contenido-carniceria-{{relArchivoLoop.id}}">
+                              {{relArchivoLoop.archivo.urlProv}}
+                        </div>
+                  </div>
+            </div>
+      </div>
+</div>
+
+
+<style>
+      .cont-archivos-real {
+            overflow-x: auto;
+            overflow-y: hidden;
+            border-left: solid 1px var(--verde);
+            border-right: solid 1px var(--verde);
+            border-bottom: solid 1px var(--verde);
+      }
+
+      .contenido-carniceria {
+            width: fit-content;
+            /* overflow: visible; */
+      }
+
+      .cont-archivos-real::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+            /* width of the entire scrollbar */
+      }
+
+      .cont-archivos-real::-webkit-scrollbar-thumb {
+            border-radius: 50px;
+            overflow: hidden;
+            background-color: red;
+      }
+
+      .cont-archivos-real::-webkit-scrollbar-track {
+
+            background: lightgrey;
+      }
+
+
+      .item-archivo {
+            padding: 15px;
+      }
+
+      .img-archivo {
+            height: 60px;
+            width: 60px;
+
+      }
+
+      .nombre-archivo {
+            /* height: 25px; */
+            height: 50px;
+            text-align: center;
+            background-color: black;
+            color: white;
+            border-radius: 50px;
+            overflow-x: scroll;
+            white-space: nowrap;
+            width: 80px;
+      }
+
+      .nombre-archivo:hover {
+            animation-name: carniceria;
+            animation-duration: 4s;
+      }
+</style>
+
+
+<script inyectado>
+</script>

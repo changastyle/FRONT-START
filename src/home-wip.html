@@ -1,0 +1,52 @@
+<include src="comun/formato-comun.html"></include>
+
+<!-- 1- LISTADO DE MOVIMIENTOS: -->
+<include src="./partes-home/listado-movimientos.html"></include>
+
+<include src="comun/fin-formato-comun.html"></include>
+
+<include src="modal-upload-invoce/modal-upload-invoice.html"></include>
+<include src="modal-upload-invoce/modal-invoice2.html"></include>
+
+
+
+
+<script inyectado>
+      $scope.init = function ()
+      {
+            $scope.comprobarOperadorLogeado();
+            $scope.findInvoices();
+      }
+      $scope.findInvoices = function ()
+      {
+            $scope.cargandoInvoices = false;
+            $.ajax(
+                  {
+                        url: $scope.urlWS + "invoices/findMesYear",
+                        headers:
+                        {
+                              "authorization": "Bearer " + $scope.token
+                        },
+                        data:
+                        {
+                              "mes": 9,
+                              "year": 2023
+                        },
+                        beforeSend: function (xhr) 
+                        {
+                              $scope.cargandoInvoices = true;
+                        },
+                        success: function (resultado, textStatus, jqXHR) 
+                        {
+                              $scope.arrInvoices = resultado;
+                              $scope.cargandoInvoices = false;
+
+                              //TODO: QUITAR:
+                              $scope.openModalInvoice2($scope.arrInvoices[0]);
+                              $scope.$evalAsync();
+                        }
+
+                  });
+      }
+
+</script>

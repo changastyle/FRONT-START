@@ -1,0 +1,83 @@
+<div class="cont-movimientos">
+      <h3 class="h-listado-movimientos">MOVIMIENTOS</h3>
+
+      <table class="table">
+            <thead>
+                  <th>Servicio</th>
+                  <th>Estado</th>
+                  <th>Archivos</th>
+                  <th>Fecha</th>
+                  <th>Monto</th>
+            </thead>
+            <tbody>
+                  <tr ng-repeat="invoiceLoop in arrInvoices" class="pointer" ng-click="openModalInvoice2(invoiceLoop)">
+                        <td>
+                              <div class="bold">
+                                    ClinicApp ({{invoiceLoop.id}})
+                              </div>
+                              <div class="">
+                                    Periodo :
+                                    {{"["}}{{invoiceLoop.mesPeriodo| zero}}/{{invoiceLoop.yearPeriodo}}{{"]"}}
+                              </div>
+
+                              {{invoiceLoop.nombre}}
+                              <!-- {{invoiceLoop}} -->
+                        </td>
+                        <td>
+                              <span class="btn-estado"
+                                    style="background-color:{{invoiceLoop.lastCambioEstado.estadoActual.color}} ;">
+                                    {{invoiceLoop.lastCambioEstado.estadoActual.nombre}}
+                                    <!-- {{invoiceLoop.ultimoCambioEstado.estadoActual.color}} -->
+                              </span>
+                              <!-- Pendiente -->
+                        </td>
+                        <td>
+                              <span class="bold">
+                                    {{invoiceLoop.arrRelsArchivos.length}}
+                              </span>
+                              Archivo<span ng-hide="invoiceLoop.arrRelsArchivos.length == 1">s</span>
+                        </td>
+                        <td>
+
+                              <span class="bold">
+                                    {{invoiceLoop.fechaULTMOD| dateNico}}
+                              </span>
+                              <!-- 13/11/2023 -->
+                        </td>
+                        <td class="bold">
+                              {{"$" +invoiceLoop.importe}}
+                              <!-- $23.500 -->
+                        </td>
+                  </tr>
+            </tbody>
+      </table>
+</div>
+
+
+<style>
+      .cont-movimientos {
+            padding: 35px;
+      }
+
+      .h-listado-movimientos {
+            color: #797878;
+            font-size: 32px;
+            font-family: Montserrat;
+            font-weight: 700;
+            word-wrap: break-word
+      }
+
+      .btn-estado {
+            padding: 12px;
+            color: white;
+            border-radius: 50px;
+            text-align: center;
+      }
+
+      .btn-estado-transpa {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            border-radius: 50px;
+            text-align: center;
+      }
+</style>
